@@ -1,0 +1,9 @@
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data01.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data01_t0.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data02.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_iso.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgnfilegxp1:cgn_fileshare.Primary.Backup	FAIL: policy=sp_cifs
+mdebglsto3-rz4	mdebglsto3_rz4_nfs_bkp:Volumes.Vault.AutosizeGrowThreshold	checked=50,fail=2,max=85% (should be less than 80%)
+mdebglsto3-rz3	mdebglfile2_cifs:Volumes.Vault.AutosizeGrowThreshold	checked=138,fail=3,max=85% (should be less than 80%)
+mdebglsto3-rz3	mdebglsto3_san_bkp:Volumes.Vault.AutosizeGrowThreshold	checked=248,fail=6,max=85% (should be less than 80%)
+

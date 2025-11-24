@@ -1,0 +1,11 @@
+	
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom01_db_vault
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom01_logbackup_vault
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom01_log_vault
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom02_db_vault
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom02_logbackup_vault
+mdebglsto3-rz4	mdebglsto3_rz4_san_bkp:mdebglpsqlmom02_log_vault
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwas1_sapmnt
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwas1_trans
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_logbackup
+mdebglsto2	mdebglfile1:vol_data_exchange

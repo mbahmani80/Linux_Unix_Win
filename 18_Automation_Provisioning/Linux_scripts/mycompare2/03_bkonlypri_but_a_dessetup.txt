@@ -1,0 +1,10 @@
+mjptyosto1	mjptyofile1:vol_Fileserver_Data.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_101.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_102.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_170_T0_VMs.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_171_T0_ISOs.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_data01.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_data02.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_t0_data01.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_t0_iso.Backup	Backup only requested on the primary, but a destination has been set up
+mdebglsto2	mdebglfilegxp1:bgl_fileshare.Primary.Backup	Backup only requested on the primary, but a destination has been set up

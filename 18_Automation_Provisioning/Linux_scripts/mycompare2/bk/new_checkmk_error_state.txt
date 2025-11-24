@@ -1,0 +1,261 @@
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglgendb1_data_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 173 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglgendb1_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 173 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglgendb1_sqldata_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 173 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglwsvdb01_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 163 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldsqlqem_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 131 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldsqlqem_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 131 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldsqlqem_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 131 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglwsvdb01_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 100 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglwsvdb01_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 1 year 100 days (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphdev_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 340 days 6 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphdev_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 340 days 6 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphdev_sys_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 340 days 6 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphdev_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 339 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgekms_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 339 days 8 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgekms_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 339 days 8 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphval_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 326 days 9 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphval_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 326 days 9 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphval_sys_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 326 days 9 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:saphval_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 325 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglserpdp1_data_vault	Source-System: mdebglsto1_rz2_nfs, Destination-System: mdebglsto3-rz3-1, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 314 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglserpdp1_logbackup_vault	Source-System: mdebglsto1_rz2_nfs, Destination-System: mdebglsto3-rz3-1, Policy: pp_0m_0w_0d_180h_saphana_logbackup, Status: idle, State: snapmirrored, Lag time: 314 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglserpdp1_shared_vault	Source-System: mdebglsto1_rz2_nfs, Destination-System: mdebglsto3-rz3-1, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 314 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglserpdp1_usrsap_vault	Source-System: mdebglsto1_rz2_nfs, Destination-System: mdebglsto3-rz3-1, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 314 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom01_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom01_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom01_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 21 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom02_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom02_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 21 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlmom02_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 270 days 21 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldbatkz_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 164 days 12 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldbatkz_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 164 days 12 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldbatkz_sys_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 164 days 12 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldbatkz_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 164 days 1 hour (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwas1_sapmnt_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwas1_trans_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwas1_usrsap_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwds1_data_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwds1_logbackup_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_0d_180h_saphana_logbackup, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwds1_shared_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_nfs_bkp:mdebglsbwds1_usrsap_vault	Source-System: mdebglsto1_rz4_nfs, Destination-System: mdebglsto3-rz3-2, Policy: pp_0m_0w_15d_0h_saphana, Status: idle, State: snapmirrored, Lag time: 138 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmsanddt_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 121 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmsanddt_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 121 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmsanddt_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 121 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldt2sand_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 117 days 11 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldt2sand_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 117 days 11 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldt2sand_sys_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 117 days 11 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebgldt2sand_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 117 days 0 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmbizsbx_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 112 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmbizsbx_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 112 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmbizsbx_sys_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 112 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglplmbizsbx_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 111 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgevalptdb_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 45 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgevalptdb_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 45 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgevalptdb_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 44 days 12 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgedevdb_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 40 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgedevdb_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 40 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgedevdb_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 39 days 17 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_alten_daten_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_alten_daten_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_content_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_content_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_db_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_log_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 26 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgespdb3_logbackup_vault	Source-System: mdebglsto1_rz4_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 25 days 18 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:sapmobileprod_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 25 days 8 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:sapmobileprod_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 25 days 8 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:sapmobileprod_sys_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 25 days 8 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:sapmobileprod_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 24 days 13 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgeibsdbval_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 19 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgeibsdbval_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 19 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgeibsdbval_sys_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 19 days 7 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mgeibsdbval_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-2, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 18 days 19 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto2	mdebglfile1:mgenetapp3_snaplock_20201021_1018.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto2	mdebglfile1:mgenetapp3_snaplock_20201021_1018.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdettwsto1	mdettwfilegxp1:snaplock_log_transfer.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdettwsto1	mdettwfilegxp1:snaplock_transfer.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:Forge_restore_20201208.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:test.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:vol_Forge_Data.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_data.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_shared.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_usrsap.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_db.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_log.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_logbackup.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_db.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_log.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_logbackup.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_db.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_log.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_logbackup.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_sys.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgekms_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=49CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgekms_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=49CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_db.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_log.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_logbackup.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_sys.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_alten_daten_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_alten_daten_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_content_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_content_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_logbackup.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlidl_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 3 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlidl_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 3 days 20 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglpsqlidl_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 3 days 19 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglprdidl_db_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 2 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglprdidl_log_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 2 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto3-rz3	Snapvault mdebglsto3_san_bkp:mdebglprdidl_logbackup_vault	Source-System: mdebglsto1_rz2_vSphere, Destination-System: mdebglsto3-rz3-1, Policy: pp_mssql, Status: idle, State: snapmirrored, Lag time: 2 days 22 hours (warn/crit at 1 day 6 hours/1 day 12 hours)CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data01.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data01_t0.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_data02.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgn-nfs:mdecgnsto1_nfs_iso.Primary.Backup	FAIL: policy=sp_vmware
+mdecgnsto1	mdecgnfilegxp1:cgn_fileshare.Primary.Backup	FAIL: policy=sp_cifs
+mjptyosto1	mjptyofile1:vol_Fileserver_Data.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_101.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_102.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_170_T0_VMs.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_171_T0_ISOs.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_data01.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_data02.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_t0_data01.Backup	Backup only requested on the primary, but a destination has been set up
+mjptyosto1	mjptyovsphere1:mjptyosto1_nfs_t0_iso.Backup	Backup only requested on the primary, but a destination has been set up
+mdebglsto3-rz4	mdebglsto3_rz4_nfs_bkp:Volumes.Vault.AutosizeGrowThreshold	checked=50,fail=2,max=85% (should be less than 80%)
+mdebglsto2	mdebglfilegxp1:bgl_fileshare.Primary.Backup	Backup only requested on the primary, but a destination has been set up
+mdebglsto3-rz3	mdebglfile2_cifs:INC0166287.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto3-rz3	mdebglfile2_cifs:Volumes.Vault.AutosizeGrowThreshold	checked=138,fail=3,max=85% (should be less than 80%)
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldbatkzdev_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldbatkzdev_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldbatkzdev_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldbatkzdev_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgleqmsdb_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlhaba2_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlhaba2_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlhaba2_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlhaba2_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlhaba2_temp.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglsqlprod01_temp_2019.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgltsqlsaphv_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgltsqlsaphv_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgltsqlsaphv_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgltsqlsaphv_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglvsqlmom02_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglvsqlmom02_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglvsqlmom02_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglvsqlmom02_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedb5_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedb5_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedb5_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgekms_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwas1_usrsap.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwds1_data.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwds1_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwds1_shared.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwds1_usrsap.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglshrav1_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglshrav1_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglshrav1_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglshrav1_shared.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglshrav1_trans.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:sapinstall.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldbatkz_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldbatkz_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldbatkz_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldbatkz_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldt2sand_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldt2sand_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldt2sand_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebgldt2sand_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglgendb1_data.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglgendb1_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglgendb1_sqldata.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmbizsbx_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmbizsbx_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmbizsbx_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmbizsbx_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmdbp1_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmdbp2_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmdbv1_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglplmdbv2_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlhaba1_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlhaba1_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlhaba1_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlhaba1_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlhaba1_temp.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlmom02_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlmom02_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlmom02_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglpsqlmom02_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglvsqlmom01_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglvsqlmom01_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglvsqlmom01_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mdebglvsqlmom01_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphdev_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphdev_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphdev_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphdev_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphval_db.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphval_log.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphval_logbackup.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:saphval_sys.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto3-rz3	mdebglsto3_san_bkp:Volumes.Vault.AutosizeGrowThreshold	checked=248,fail=6,max=85% (should be less than 80%)
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsbwdd1_501.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsbwdp1_500.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpds1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpds1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_502.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglshrdv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglshrdv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsto1_rz2_hana01.Vault.Backup	weekly=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdd1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdd1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdv1_402.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpdd1_401.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpdp1_400.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpds1_403.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsto1_rz4_hana01.Vault.Backup	weekly=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbd1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbp1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbp1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_content_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_content_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_logbackup.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_search_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_search_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_temp.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_temp.Vault.Backup	Backup on Secondary is requested, but no destination has been set up
+

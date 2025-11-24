@@ -1,0 +1,85 @@
+mdebglsto2	mdebglfile1:mgenetapp3_snaplock_20201021_1018.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto2	mdebglfile1:mgenetapp3_snaplock_20201021_1018.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdettwsto1	mdettwfilegxp1:snaplock_log_transfer.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdettwsto1	mdettwfilegxp1:snaplock_transfer.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:Forge_restore_20201208.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:test.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+musgaisto1-rz1	musgaifilegxp1:vol_Forge_Data.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_data.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_shared.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdp1_usrsap.Vault.Backup	daily=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebgldsqlqem_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglplmsanddt_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=18CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_db.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_log.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlmom01_logbackup.Vault.Backup.1	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglwsvdb01_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_db.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_log.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgedevdb_logbackup.Vault.Backup	daily=fail,miss=40 weekly=fail,miss=6CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_db.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_log.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_logbackup.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgeibsdbval_sys.Vault.Backup	daily=fail,miss=19 weekly=fail,miss=3CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgekms_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=49CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgekms_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=49CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mgevalptdb_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=7CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_db.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_log.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_logbackup.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:sapmobileprod_sys.Vault.Backup	daily=fail,miss=25 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_alten_daten_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_alten_daten_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_content_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_content_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_db.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_log.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespdb3_logbackup.Vault.Backup	daily=fail,miss=26 weekly=fail,miss=4CRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglprdidl_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_db.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_log.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_vSphere:mdebglpsqlidl_logbackup.Vault.Backup	daily=fail,miss=all weekly=fail,miss=allCRIT
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsbwdd1_501.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsbwdp1_500.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpds1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpds1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_502.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglserpdv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglshrdv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglshrdv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebglsto1_rz2_hana01.Vault.Backup	weekly=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz2	mdebglsto1_rz2_nfs:mdebgltagdbv1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdd1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdd1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsbwdv1_402.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpdd1_401.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpdp1_400.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglserpds1_403.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebglsto1_rz4_hana01.Vault.Backup	weekly=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbd1_data.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbp1_shared.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_nfs:mdebgltagdbp1_usrsap.Vault.Backup	daily=warn,waiting for new snapshotWARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_content_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_content_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_logbackup.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_search_db.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
+mdebglsto1-rz4	mdebglsto1_rz4_vSphere:mgespsql2_search_log.Vault.Backup	daily=warn,waiting for new snapshot weekly=36,miss=17WARN
