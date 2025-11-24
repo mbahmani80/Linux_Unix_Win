@@ -1,0 +1,68 @@
+# ssh-copy-id sysadmin@10.0.2.154
+# ssh-copy-id sysadmin@10.0.2.155
+# Then update your hosts file to use the key:
+# [suse_nodes:vars]
+# ansible_user=sysadmin
+# ansible_become=yes
+# ansible_private_key_file=/home/ubuntu/.ssh/id_ed25519
+# ansible_python_interpreter=/usr/bin/env python3
+# Then you can run: ansible-playbook -i hosts 03_update_suse.yml
+# or
+# ansible-playbook -i hosts 03_update_suse.yml --ask-pass --ask-become-pass
+# --ask-pass → SSH login password
+# --ask-become-pass → sudo password
+---
+- name: Update SUSE nodes
+  hosts: suse_nodes
+  become: yes
+  tasks:
+
+    - name: Refresh zypper repositories
+      ansible.builtin.command:
+        cmd: zypper refresh
+      register: refresh_output
+
+    - name: Update all packages
+      ansible.builtin.command:
+        cmd: zypper up -y
+      register: update_output
+      notify: reboot if kernel updated
+
+    - name: Install gpm package
+      ansible.builtin.zypper:
+        name: gpm
+        state: present
+
+    - name: Enable and start gpm service
+      ansible.builtin.service:
+        name: gpm
+        enabled: yes
+        state: started
+
+    - name: Install German locale package
+      ansible.builtin.zypper:
+        name: glibc-locale
+        state: present
+
+    - name: Generate German UTF-8 locale
+      ansible.builtin.command: localectl set-locale LANG=de_DE.UTF-8
+      args:
+        creates: /etc/locale.conf
+
+    - name: Set system language to German
+      ansible.builtin.command: localectl set-keymap de
+      when: ansible_system == "Linux"
+
+    - name: Ensure locale.conf has German settings
+      ansible.builtin.lineinfile:
+        path: /etc/locale.conf
+        regexp: '^LANG='
+        line: 'LANG=de_DE.UTF-8'
+        create: yes
+
+  handlers:
+    - name: reboot if kernel updated
+      ansible.builtin.reboot:
+        reboot_timeout: 600
+      when: "'kernel-default' in update_output.stdout"
+

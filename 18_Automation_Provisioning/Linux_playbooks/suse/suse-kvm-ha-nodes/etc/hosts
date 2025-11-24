@@ -1,0 +1,32 @@
+#
+# hosts         This file describes a number of hostname-to-address
+#               mappings for the TCP/IP subsystem.  It is mostly
+#               used at boot time, when no name servers are running.
+#               On small systems, this file can be used instead of a
+#               "named" name server.
+# Syntax:
+#
+# IP-Address  Full-Qualified-Hostname  Short-Hostname
+#
+
+
+# special IPv6 addresses
+
+
+127.0.0.1       localhost
+::1     localhost ipv6-localhost ipv6-loopback
+fe00::0 ipv6-localnet
+ff00::0 ipv6-mcastprefix
+ff02::1 ipv6-allnodes
+ff02::2 ipv6-allrouters
+ff02::3 ipv6-allhosts
+#public
+10.0.2.154      node1.lab.local          node1
+10.0.2.155      node2.lab.local          node2
+#Storage
+192.168.56.154  mig-node1.lab.local      mig-node1
+192.168.56.155  mig-node2.lab.local      mig-node2
+
+#Cluster
+192.168.178.154  c-node1.lab.local      c-node1
+192.168.178.155  c-node2.lab.local      c-node2

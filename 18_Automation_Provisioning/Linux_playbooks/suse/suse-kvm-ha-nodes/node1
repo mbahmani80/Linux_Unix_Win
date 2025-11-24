@@ -1,0 +1,48 @@
+node1:~ # cd /etc/sysconfig/network/
+node1:/etc/sysconfig/network # ls
+config     if-up.d    ifcfg-br2   ifcfg-eth2      ifroute-br0             providers         scripts
+dhcp       ifcfg-br0  ifcfg-eth0  ifcfg-lo        ifroute-br0.YaST2save   routes
+if-down.d  ifcfg-br1  ifcfg-eth1  ifcfg.template  ifroute-eth0.YaST2save  routes.YaST2save
+node1:/etc/sysconfig/network # cat ifcfg-br0
+GATEWAY='10.0.2.2'
+DNS1='8.8.8.8'
+DNS2='1.1.1.1'
+SEARCHDOMAIN='lab2.local'
+IPADDR='10.0.2.154/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BRIDGE='yes'
+BRIDGE_PORTS='eth0'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE=public
+node1:/etc/sysconfig/network # cat ifcfg-eth0
+BOOTPROTO='none'
+STARTMODE='hotplug'
+node1:/etc/sysconfig/network # cat ifcfg-br1
+IPADDR='192.168.56.154/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BRIDGE='yes'
+BRIDGE_PORTS='eth1'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE=data
+node1:/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO='none'
+STARTMODE='hotplug'
+node1:/etc/sysconfig/network # cat ifcfg-br2
+SEARCHDOMAIN='lab2.local'
+IPADDR='192.168.178.154/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BRIDGE='yes'
+BRIDGE_PORTS='eth2'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE='cluster'
+node1:/etc/sysconfig/network # cat ifcfg-eth2
+BOOTPROTO='none'
+STARTMODE='hotplug'
+node1:/etc/sysconfig/network #
+

@@ -1,0 +1,48 @@
+# ansible-playbook -i hosts  05_install_apache.yml --ask-pass --ask-become-pass
+# --ask-pass → SSH login password
+# --ask-become-pass → sudo password
+
+---
+- name: Install cluster packages, Apache, and configure test page on SUSE
+  hosts: suse_nodes
+  become: yes
+  tasks:
+
+    - name: Refresh zypper repositories
+      ansible.builtin.command:
+        cmd: zypper refresh
+
+    - name: Install Apache
+      ansible.builtin.zypper:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Ensure Apache is enabled and started
+      ansible.builtin.service:
+        name: apache2
+        enabled: yes
+        state: started
+
+    - name: Create Apache test page
+      ansible.builtin.copy:
+        dest: /srv/www/htdocs/index.html
+        content: "<h1>Apache HA Test Node {{ inventory_hostname }}</h1>"
+        owner: root
+        group: root
+        mode: '0644'
+
+    - name: Open HTTP port in firewall
+      firewalld:
+        service: http
+        permanent: yes
+        state: enabled
+        immediate: yes
+
+    - name: Open HTTPS port in firewall
+      firewalld:
+        service: https
+        permanent: yes
+        state: enabled
+        immediate: yes
+

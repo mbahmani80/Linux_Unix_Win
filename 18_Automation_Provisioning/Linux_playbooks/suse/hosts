@@ -1,0 +1,29 @@
+## set up ssh user name and path to python3 ##
+[all:vars]
+ansible_python_interpreter=/usr/bin/env python3
+
+
+# first time ansible_user='ubuntu' 
+[suse_nodes:vars]
+ansible_user='sysadmin'
+ansible_become=yes
+ansible_become_method=sudo
+ansible_private_key_file=/home/sysadmin/.ssh/id_rsa
+ansible_python_interpreter='/usr/bin/env python3'
+
+
+
+[suse_nodes]
+node1 ansible_host=10.0.2.154 ip=192.168.178.154
+node2 ansible_host=10.0.2.155 ip=192.168.178.155
+#node1 ansible_host=192.168.178.113 ip=192.168.178.113
+#node2 ansible_host=192.168.178.114 ip=192.168.178.114
+
+[suse_nodes:vars]
+network=192.168.178.0
+vip=10.0.2.200
+netmask=24
+#network=192.168.178.0
+#vip=192.168.178.200
+#netmask=24
+

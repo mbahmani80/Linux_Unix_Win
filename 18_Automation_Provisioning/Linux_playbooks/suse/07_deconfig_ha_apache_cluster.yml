@@ -1,0 +1,205 @@
+# ansible-playbook -i hosts 07_deconfig_ha_apache_cluster.yml --ask-pass --ask-become-pass
+# --ask-pass → SSH login password
+# --ask-become-pass → sudo password
+# Use --tags to run only a specific step, e.g.:
+# ansible-playbook -i hosts  06_ha_apache_cluster.yml --ask-pass --ask-become-pass --tags apache
+
+#Stops all HA resources before deletion.
+#Deletes resources, constraints, and commits CRM changes.
+#Stops and disables cluster services.
+#Cleans configuration files (/etc/corosync/corosync.conf, /var/lib/pacemaker).
+#Stops and optionally removes Apache and test pages.
+#Cleans firewall rules for Corosync and Apache.
+#Optional cleanup of /etc/hosts and cluster packages.
+#Reboots nodes to fully clear residual services.
+#Tasks are tagged for selective execution: stop_resources, delete, services, apache_cleanup, firewall, hosts_cleanup, packages_cleanup, reboot.
+
+---
+- name: "Step 1 & 2: Check cluster status and stop HA resources"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+
+    - name: Check cluster status
+      ansible.builtin.command: crm_mon -1
+      register: cluster_status
+      ignore_errors: yes
+      tags: status
+
+    - name: Display cluster status
+      ansible.builtin.debug:
+        var: cluster_status.stdout
+      tags: status
+
+    - name: Stop Apache resource
+      ansible.builtin.command: crm resource stop apache
+      ignore_errors: yes
+      tags: stop_resources
+
+    - name: Stop VIP resource
+      ansible.builtin.command: crm resource stop vip
+      ignore_errors: yes
+      tags: stop_resources
+
+    - name: Verify resources are stopped
+      ansible.builtin.command: crm_mon -1
+      register: stopped_status
+      ignore_errors: yes
+      tags: stop_resources
+
+    - name: Show stopped resources
+      ansible.builtin.debug:
+        var: stopped_status.stdout
+      tags: stop_resources
+
+- name: "Step 3 & 4: Delete resources and constraints"
+  hosts: node1
+  become: yes
+  tasks:
+    - name: Delete Apache resource
+      ansible.builtin.command: crm configure delete apache
+      ignore_errors: yes
+      tags: delete
+
+    - name: Delete VIP resource
+      ansible.builtin.command: crm configure delete vip
+      ignore_errors: yes
+      tags: delete
+
+    - name: Delete colocation and ordering constraints
+      ansible.builtin.command: crm configure delete col_apache_with_vip ord_apache_after_vip cli-prefer-apache
+      ignore_errors: yes
+      tags: delete
+
+    - name: Commit CRM changes
+      ansible.builtin.command: crm configure commit
+      ignore_errors: yes
+      tags: delete
+
+- name: "Step 6 & 7: Stop cluster services and remove configs"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Stop Pacemaker and Corosync
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        state: stopped
+      loop:
+        - pacemaker
+        - corosync
+      tags: services
+
+    - name: Disable Pacemaker and Corosync
+      ansible.builtin.systemd:
+        name: "{{ item }}"
+        enabled: no
+      loop:
+        - pacemaker
+        - corosync
+      tags: services
+
+    - name: Backup and remove corosync.conf
+      ansible.builtin.shell: |
+        [ -f /etc/corosync/corosync.conf ] && mv /etc/corosync/corosync.conf /etc/corosync/corosync.conf.bak
+      tags: cleanup
+
+    - name: Remove Pacemaker CIB and CRM data
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: absent
+      loop:
+        - /var/lib/pacemaker/cib/*
+        - /var/lib/pacemaker/crm/*
+      tags: cleanup
+
+- name: "Step 8: Stop and optionally remove Apache"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Stop Apache service
+      ansible.builtin.systemd:
+        name: apache2
+        state: stopped
+      tags: apache_cleanup
+
+    - name: Disable Apache service
+      ansible.builtin.systemd:
+        name: apache2
+        enabled: no
+      tags: apache_cleanup
+
+    - name: Remove test page
+      ansible.builtin.file:
+        path: /srv/www/htdocs/index.html
+        state: absent
+      tags: apache_cleanup
+
+- name: "Step 9: Restore Firewall"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Remove Corosync UDP ports
+      ansible.builtin.command: firewall-cmd --zone=public --remove-port={{ item }}/udp --permanent
+      loop:
+        - 5404
+        - 5405
+      ignore_errors: yes
+      tags: firewall
+
+    - name: Remove HTTP/HTTPS services added for cluster
+      ansible.builtin.command: firewall-cmd --zone=public --remove-service={{ item }} --permanent
+      loop:
+        - http
+        - https
+      ignore_errors: yes
+      tags: firewall
+
+    - name: Reload firewall
+      ansible.builtin.command: firewall-cmd --reload
+      tags: firewall
+
+    - name: Show current firewall configuration
+      ansible.builtin.command: firewall-cmd --list-all
+      register: fw_status
+      tags: firewall
+
+    - name: Display firewall status
+      ansible.builtin.debug:
+        var: fw_status.stdout
+      tags: firewall
+
+- name: "Step 10: Optional cleanup /etc/hosts"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Remove test node entries from /etc/hosts
+      ansible.builtin.lineinfile:
+        path: /etc/hosts
+        regexp: '10.0.2.154|10.0.2.155'
+        state: absent
+      tags: hosts_cleanup
+
+- name: "Step 12: Optional remove cluster packages"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Remove Pacemaker and Corosync packages
+      ansible.builtin.zypper:
+        name:
+          - pacemaker
+          - corosync
+          - crmsh
+          - fence-agents
+          - sbd
+        state: absent
+      tags: packages_cleanup
+
+- name: "Step 13: Reboot nodes"
+  hosts: suse_nodes
+  become: yes
+  tasks:
+    - name: Reboot node
+      ansible.builtin.reboot:
+        reboot_timeout: 300
+      tags: reboot
+

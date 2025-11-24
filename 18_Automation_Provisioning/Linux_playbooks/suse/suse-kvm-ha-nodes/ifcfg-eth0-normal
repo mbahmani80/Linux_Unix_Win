@@ -1,0 +1,12 @@
+GATEWAY='10.0.2.2'
+DNS1='8.8.8.8'
+DNS2='1.1.1.1'
+SEARCHDOMAIN='lab2.local'
+BOOTPROTO='none'
+STARTMODE='auto'
+ZONE='public'
+
+or
+
+BOOTPROTO='dhcp'
+STARTMODE='auto'

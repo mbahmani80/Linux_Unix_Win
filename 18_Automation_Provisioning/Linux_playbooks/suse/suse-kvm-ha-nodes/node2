@@ -1,0 +1,44 @@
+node2:~ # cd /etc/sysconfig/network/
+node2:/etc/sysconfig/network # cat ifcfg-br0
+IPADDR='10.0.2.155/24'
+BOOTPROTO='static'
+STARTMODE='auto'
+BRIDGE='yes'
+BRIDGE_PORTS='eth0'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE=public
+
+node2:/etc/sysconfig/network # cat ifcfg-eth0
+BOOTPROTO='none'
+STARTMODE='hotplug'
+
+node2:/etc/sysconfig/network # cat ifcfg-br1
+IPADDR='192.168.56.155/24'
+BOOTPROTO='static'
+STARTMODE='hotplug'
+BRIDGE='yes'
+BRIDGE_PORTS='eth1'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE=data
+
+node2:/etc/sysconfig/network # cat ifcfg-eth1
+BOOTPROTO='none'
+STARTMODE='hotplug'
+
+node2:/etc/sysconfig/network # cat ifcfg-br2
+IPADDR='192.168.178.155/24'
+BOOTPROTO='static'
+STARTMODE='hotplug'
+BRIDGE='yes'
+BRIDGE_PORTS='eth2'
+BRIDGE_STP='off'
+BRIDGE_FORWARDDELAY='15'
+ZONE=cluster
+
+node2:/etc/sysconfig/network # cat ifcfg-eth2
+BOOTPROTO='none'
+STARTMODE='hotplug'
+node2:/etc/sysconfig/network #
+

@@ -1,0 +1,30 @@
+# ansible-playbook -i hosts  04_install_Cluster_packages.yml --ask-pass --ask-become-pass
+# --ask-pass → SSH login password
+# --ask-become-pass → sudo password
+
+---
+- name: Install cluster packages on SUSE
+  hosts: suse_nodes
+  become: yes
+  tasks:
+
+    - name: Refresh zypper repositories
+      ansible.builtin.command:
+        cmd: zypper refresh
+
+    - name: Install cluster packages
+      ansible.builtin.zypper:
+        name:
+          - pacemaker
+          - corosync
+          - crmsh
+          - fence-agents
+          - sbd
+          - yast2-cluster 
+          - yast2-geo-cluster
+          - conntrack-tools 
+          - hawk2
+          - corosync-qdevice
+        state: present
+        update_cache: yes
+

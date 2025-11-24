@@ -1,0 +1,44 @@
+# ansible-playbook -i hosts  08_install_kvm.yml --ask-pass --ask-become-pass
+# --ask-pass → SSH login password
+# --ask-become-pass → sudo password
+
+#Using YaST
+#
+#YaST is openSUSE’s system configuration tool, which provides a user-friendly interface for installing and configuring software.
+#
+#    Open YaST by running `sudo yast` in the terminal or by searching for it in the application menu
+#    Navigate to “Virtualization” in the left panel
+#    Select “Install Hypervisor and Tools” on the right
+#    Choose “KVM server” and “KVM tools”
+#    Click “Accept” to start the installation
+
+---
+- name: Install KVM and related tools on SUSE
+  hosts: suse_nodes
+  become: yes
+  vars:
+    kvm_packages:
+      - patterns-openSUSE-kvm_server
+      - patterns-server-kvm_tools
+      - qemu-kvm
+      - libvirt
+      - virt-manager
+      - virt-install
+      - virt-viewer
+      - bridge-utils
+      - openvswitch
+
+  tasks:
+
+    - name: Install KVM and GUI tools
+      ansible.builtin.zypper:
+        name: "{{ kvm_packages }}"
+        state: present
+        update_cache: yes
+
+    - name: Ensure libvirtd service is enabled and running
+      ansible.builtin.service:
+        name: libvirtd
+        enabled: yes
+        state: started
+
