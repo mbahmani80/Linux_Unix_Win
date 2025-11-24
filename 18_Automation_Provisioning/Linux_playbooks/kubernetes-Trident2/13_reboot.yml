@@ -1,0 +1,18 @@
+---
+
+- hosts: kubernetes-Trident2 
+  #- hosts: K8s 
+  become: true
+  become_method: sudo
+  become_user: root 
+  gather_facts: no
+
+  tasks:
+  - name: Reboot a slow machine that might have lots of updates to apply
+    reboot:
+      msg: "Reboot initiated by Ansible"
+      connect_timeout: 5
+      reboot_timeout: 600
+      pre_reboot_delay: 0
+      post_reboot_delay: 30
+      test_command: whoami

@@ -1,0 +1,149 @@
+
+---
+
+- hosts: mgmt
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: no
+  tasks:
+
+  - name: create the kube user account
+    user: name=kube append=yes state=present createhome=yes shell=/bin/bash
+
+  - name: "create /etc/sudoers.d/kube"
+    file:
+      path: "/etc/sudoers.d/kube"
+      state: touch
+
+  - name: allow 'kube' to use sudo without needing a password
+    lineinfile:
+      path: "/etc/sudoers.d/kube"
+      line: "kube ALL=(ALL) NOPASSWD: ALL"
+      state: present
+
+  - name: Copy .kube from master node
+    shell: |
+           sudo cp -rvf /home/sysadmin/.ssh/ /root/
+           sudo rsync -avHAX kube@172.28.30.90:~/.kube /home/sysadmin/
+           sudo rsync -avHAX kube@172.28.30.90:~/.kube /home/kube/
+
+  - name: set up authorized keys for the kube user
+    authorized_key: user=kube key="{{item}}"
+    with_file:
+      - ~/.ssh/id_rsa.pub
+
+  - name: Creates a dir in /etc/apt/sources.list.d/backup
+    file:
+      path: "{{ item }}"
+      state: directory
+    loop:
+      - /etc/apt/sources.list.d/backup
+
+  - name: makes a backup of all repository are located in /etc/apt/sources.list.d/backup
+    shell: |
+           sudo mv /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/backup/
+
+  - name: install kubernetes repo key and some PKGs dependencies
+    shell: |
+           sudo apt-get update && sudo apt-get install -y apt-transport-https curl
+           curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+  - name: Create kubernetes repo file
+    file:
+      path: "/etc/apt/sources.list.d/kubernetes.list"
+      state: "touch"
+
+  - name: Add K8s Source
+    blockinfile:
+      path: "/etc/apt/sources.list.d/kubernetes.list"
+      block: |
+             deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+  - name: install kubernetes
+    shell: |
+            sudo apt-get update
+            sudo apt-get install -y kubectl
+            #sudo apt-get install -y kubelet=1.20.1-00 kubeadm=1.20.1-00 kubectl=1.20.1-00
+            sudo apt-mark hold kubectl
+
+  - name: Install some useful packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - whois
+      - git
+      - curl
+      - gnupg2
+      - software-properties-common
+      - apt-transport-https
+      - ca-certificates
+      - unzip
+      - python3
+      - net-tools
+      - open-vm-tools
+      - openssh-server
+      - perl
+      - nftables
+      - rsync
+      - open-iscsi
+
+  - name: Creating a file with content
+    copy:
+      dest: "/home/{{ item }}/.screenrc"
+      content: |
+        # Enable mouse scrolling and scroll bar history scrolling
+        termcapinfo xterm* ti@:te@
+        defscrollback 10000
+    loop:
+      - sysadmin
+      - ubuntu
+
+  - name: Change owner and permission of a file
+    file:
+      path: "/home/{{ item }}/.screenrc"
+      owner: "{{ item }}"
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+      - sysadmin
+      - ubuntu
+
+  - name: Copy vimrc file.
+    template:
+      src: ./files/vimrc
+      dest: "/home/{{ item }}/.vimrc"
+      owner: "{{ item }}"
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+      - sysadmin
+      - ubuntu
+
+  - name: Copy bash_aliases file.
+    template:
+      src: ./files/bash_aliases
+      dest: "/home/{{ item }}/.bash_aliases"
+      owner: "{{ item }}"
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+      - sysadmin
+      - ubuntu
+
+  - name: Copy bash_aliases, vimrc, screenrc file.
+    template:
+      src:  "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: root
+      mode: 0755
+    loop:
+      - src:  ./files/bash_aliases
+        dest: /root/.bash_aliases
+      - src:  ./files/vimrc
+        dest: /root/.vimrc
+      - src:  ./files/screenrc
+        dest: /root/.screenrc
+

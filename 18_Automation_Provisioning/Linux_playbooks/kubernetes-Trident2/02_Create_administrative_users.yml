@@ -1,0 +1,38 @@
+---
+- hosts: kubernetes-Trident2 
+  vars:
+    created_username: sysadmin
+  become: true
+  become_method: sudo
+  become_user: root
+  remote_user: ubuntu
+  gather_facts: no
+  name: create administrative users
+  tasks:
+    - name: create admin "{{ created_username }}"
+      user:
+         name: "{{ created_username }}"
+         password: '$6$gVbe8NhDUSM9YSwa$nv3gv.WMoyiXJRs9pooe.L8pJPb./NFCiQM/XCMV9UnYhR5icxHPiHWp1kTdYfDsZDKfOIdtszXJ7805C3iXM/'
+         state: present
+         shell: /bin/bash
+         create_home: true
+         groups: adm
+         append: yes
+
+    - name: "create /etc/sudoers.d/{{ created_username }}"
+      file:
+        path: "/etc/sudoers.d/{{ created_username }}"
+        state: touch
+
+    - name: configure a pass-wordless authentication & execution for sysadmin 
+      lineinfile:
+        path: "/etc/sudoers.d/{{ created_username }}"
+        line: "sysadmin ALL=(ALL) NOPASSWD: ALL"
+        state: present
+          
+    - name: Set authorized key for user "{{ created_username }}" copying it from current user
+      ansible.posix.authorized_key:
+        user: "{{ created_username }}"
+        state: present
+        key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+

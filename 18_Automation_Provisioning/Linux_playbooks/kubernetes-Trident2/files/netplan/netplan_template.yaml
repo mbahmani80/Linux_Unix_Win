@@ -1,0 +1,24 @@
+# files/netplan_template.yaml
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    ens160:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - {{ ens160_ip }}/20
+      nameservers:
+        addresses:
+          - 172.28.17.1
+
+    ens192:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - {{ ens192_ip }}/20
+      nameservers:
+        addresses:
+          - 172.28.17.1
+

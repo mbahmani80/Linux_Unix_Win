@@ -1,0 +1,38 @@
+---
+- name: Copy and Apply Netplan Configuration
+  hosts: kubernetes-Trident2
+  become: true
+  become_method: sudo
+  gather_facts: no
+
+  vars:
+    netplan_configs:
+      - name: k8s-cl04-master-0
+        ens160_ip: 172.28.30.160
+        ens192_ip: 192.168.11.160
+      - name: k8s-cl04-worker-0
+        ens160_ip: 172.28.30.161
+        ens192_ip: 192.168.11.161
+      - name: k8s-cl04-worker-1
+        ens160_ip: 172.28.30.162
+        ens192_ip: 192.168.11.162
+
+  tasks:
+    - name: Copy Netplan configuration file
+      ansible.builtin.template:
+        src: "./files/netplan/{{ item.name }}_99-netcfg-vmware.yaml"
+        dest: /etc/netplan/99-netcfg-vmware.yaml  
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+      vars:
+        ens160_ip: "{{ item.ens160_ip }}"
+        ens192_ip: "{{ item.ens192_ip }}"
+      loop: "{{ netplan_configs }}"
+      when: inventory_hostname == item.name  # Exclude the control machine
+
+    - name: Apply Netplan configuration
+      ansible.builtin.command: netplan apply
+      become: yes
+

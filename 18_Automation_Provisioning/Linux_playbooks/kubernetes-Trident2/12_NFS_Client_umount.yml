@@ -1,0 +1,17 @@
+---
+
+- hosts: nfs_client 
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: no
+  tasks:
+    - name: umount volumn
+      shell: sudo umount -f /mnt/nfs_test
+      ignore_errors: True
+
+    - name: Unmount a mounted volume
+      ansible.posix.mount:
+        path: /mnt/nfs_test
+        state: unmounted
+

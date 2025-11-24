@@ -1,0 +1,23 @@
+---
+
+- name: Copy and Apply Netplan Configuration
+  hosts: k8s-cl03-master-0  # Replace 'your_server' with the hostname or IP address of the server
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: no
+
+  tasks:
+    - name: Copy Netplan configuration file
+      ansible.builtin.copy:
+        # Replace with the path to your updated Netplan config
+        src: /home/sysadmin/my_sysadmin_playbook/files/k8s-cl03-master-0_99-netcfg-vmware.yaml
+        dest: /etc/netplan/99-netcfg-vmware.yaml  # Replace with the correct destination path
+        owner: root
+        group: root
+        mode: '0644'
+      become: yes
+
+    - name: Apply Netplan configuration
+      ansible.builtin.command: netplan apply
+      become: yes

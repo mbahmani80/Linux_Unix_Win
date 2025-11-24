@@ -1,0 +1,13 @@
+# group_vars/all.yml
+
+---
+netplan_configs:
+  - name: k8s-cl03-master-0
+    ens160_ip: 172.28.30.90
+    ens192_ip: 192.168.11.90
+  - name: k8s-cl03-worker-0
+    ens160_ip: 172.28.30.120
+    ens192_ip: 192.168.11.91
+  - name: k8s-cl03-worker-1
+    ens160_ip: 172.28.30.121
+    ens192_ip: 192.168.11.92

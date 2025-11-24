@@ -1,0 +1,6 @@
+# /etc/exports: the access control list for filesystems which may be exported
+#   to NFS clients.  See exports(5).
+# https://www.golinuxcloud.com/unix-linux-nfs-mount-options-example/
+#/mnt/nfs_test            *(rw,sync,no_root_squash,no_subtree_check)
+/mnt/nfs_test    192.168.11.0/20(rw,relatime,rsize=1048576,wsize=1048576,namlen=255,soft,proto=tcp,timeo=60,retrans=2,sec=sys,local_lock=none)
+

@@ -1,0 +1,3 @@
+# Enable mouse scrolling and scroll bar history scrolling
+termcapinfo xterm* ti@:te@
+defscrollback 10000
