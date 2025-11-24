@@ -1,0 +1,40 @@
+https://www.howtoforge.de/anleitung/kubernetes-cluster-auf-ubuntu-22-04-einrichten/
+
+How to set up Kubernetes Cluster with Kubeadm
+Kubeadm is a tool developed as part of the upstream Kubernetes project. It’s used to provision clusters running pure Kubernetes.
+
+Creating a cluster with Kubeadm is a more involved procedure than Minikube, MicroK8s, or K3s offer. You need to manually install a container runtime on each of your Nodes, then set up the cluster control plane, install a networking plugin, and connect your worker Nodes to the primary. This means you must perform more tasks to set up your cluster, then install any additional software you require.
+
+When to Use Kubeadm?
+Kubeadm is the best solution when you want to use upstream Kubernetes as-is and are comfortable with more hands-on system administration. It allows you to customize additional components in your environment, such as the underlying container runtime.
+
+When you don’t need the conveniently bundled addons of third-party distributions, and portability isn’t a factor, then using Kubeadm will expose you to more of how Kubernetes works–which can be a valuable learning experience.
+
+However, Kubeadm is intentionally limited in scope and designed to be used as a foundation for higher-level tools like Minikube and MicroK8s, so opting for these will always offer a simpler management experience.
+
+How to interact with your cluster?
+Once you’ve picked one of these distributions and installed your cluster, you can interact with your environment using any of the tools available in the Kubernetes ecosystem. Here are three popular choices.
+
+1. Kubectl CLI
+Kubectl is the standard CLI for interacting with the Kubernetes API. You can use it with any of the cluster installation methods mentioned in this article. It’s configured using Kubeconfig files which define how to connect to your cluster.
+
+Kubectl is available for standalone download and comes bundled with Minikube, MicroK8s, and K3s, as shown above. If you need some tips on using Kubectl, then check out our handy Kubectl cheat sheet.
+
+2. Kubernetes Dashboard
+The Kubernetes Dashboard is an official web interface developed as part of the Kubernetes project. It provides a visual overview of the resources in your cluster, allowing you to easily manage deployments and troubleshoot problems.
+
+The official Helm chart is the easiest way to install the dashboard. First, make sure you have Helm installed on your system, then run the following commands. The output will show how to access the dashboard in your browser.
+
+$ helm repo add kubernetes-dashboard https://kubernetes.github.io/dashboard/
+
+$ helm install kubernetes-dashboard kubernetes-dashboard/kubernetes-dashboard
+
+If you’re using Minikube or MicroK8s, you should skip these manual steps and enable the bundled Dashboard addon instead. This makes it even easier to get started.
+
+3. Lens
+Lens is an alternative Kubernetes dashboard solution. It’s a powerful desktop app that’s designed as a complete management and visualization platform.
+
+install kubernetes lens
+Lens lets you connect to multiple clusters, then inspect the workloads running within them. It uses your existing Kubectl config files so there’s no complicated manual setup procedure.
+
+To get started with Lens, you should download the latest package from the website and then install it on your system.

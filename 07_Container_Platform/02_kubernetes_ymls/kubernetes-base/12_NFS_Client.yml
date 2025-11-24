@@ -1,0 +1,42 @@
+---
+
+- hosts: kubernetes-Trident1 
+  become: true
+  become_method: sudo
+  become_user: root
+  gather_facts: no
+  tasks:
+    - name: Create a mountable directory if it does not exist
+      file:
+        path: /mnt/nfs_test
+        state: directory
+        owner: nobody
+        group: nogroup
+        mode: '0775'
+
+    - name: umount volumn
+      shell: sudo umount -f /mnt/nfs_test
+      ignore_errors: True
+      register: command_result
+      failed_when: "'FAILED' in command_result.stderr"
+
+    - name: Unmount a mounted volume
+      ansible.posix.mount:
+        path: /mnt/nfs_test
+        state: unmounted
+
+
+    - name: install nfs client
+      action: apt pkg=nfs-common state=present
+
+    - name: Ensure rpcbind is running (Ubuntu Trusty Tahr or newer)
+      action: service name=rpcbind state=started enabled=yes
+
+
+    - name: Mount an NFS volume
+      ansible.posix.mount: #src: 192.168.11.90:/mnt/nfs_test
+        src: 192.168.11.35:/trident_test # NetApp
+        path: /mnt/nfs_test
+        opts: rw,relatime,rsize=1048576,wsize=1048576,namlen=255,soft,proto=tcp,timeo=60,retrans=2,sec=sys,local_lock=none 
+        state: mounted
+        fstype: nfs

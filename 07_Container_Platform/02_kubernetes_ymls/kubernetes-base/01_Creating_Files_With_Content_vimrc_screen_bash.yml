@@ -1,0 +1,72 @@
+#ansible-playbook -i hosts 03_update_debian_based.yml --ask-become-pass
+#ansible-playbook -i hosts 03_update_debian_based.yml --ask-pass
+---
+- hosts: k8s
+#- hosts: kubernetes-Trident1 
+  become: true
+  become_method: sudo
+  become_user: root 
+  gather_facts: no
+
+  tasks:
+  - name: Creating a file with content
+    copy:
+      dest: "/home/{{ item }}/.screenrc"
+      content: |
+        # Enable mouse scrolling and scroll bar history scrolling
+        termcapinfo xterm* ti@:te@
+        defscrollback 10000
+    loop:
+#      - sysadmin
+      - ubuntu
+        
+  - name: Change owner and permission of a file
+    file:
+      path: "/home/{{ item }}/.screenrc"
+      owner: "{{ item }}" 
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+#      - sysadmin
+      - ubuntu
+
+  - name: Copy vimrc file.
+    template:
+      src: ./files/vimrc
+      dest: "/home/{{ item }}/.vimrc"
+      owner: "{{ item }}"
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+#      - sysadmin
+      - ubuntu
+
+  - name: Copy bash_aliases file.
+    template:
+      src: ./files/bash_aliases
+      dest: "/home/{{ item }}/.bash_aliases"
+      owner: "{{ item }}"
+      group: "{{ item }}"
+      mode: 0755
+    loop:
+#      - sysadmin
+      - ubuntu 
+
+
+
+  - name: Copy bash_aliases, vimrc, screenrc file.
+    template:
+      src:  "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: root
+      group: root
+      mode: 0755
+    loop:
+      - src:  ./files/bash_aliases 
+        dest: /root/.bash_aliases
+      - src:  ./files/vimrc
+        dest: /root/.vimrc
+      - src:  ./files/screenrc
+        dest: /root/.screenrc
+
+ 

@@ -1,0 +1,201 @@
+---
+
+- hosts: kubernetes-Trident1 
+  become: true
+  become_method: sudo
+  become_user: root 
+  gather_facts: no
+  tasks:
+  - name: Remove swapfile from /etc/fstab
+    mount:
+      name: "{{ item }}"
+      fstype: swap
+      state: absent
+    with_items:
+      - swap 
+
+  - name: Disable SWAP
+    shell: |
+      swapoff -a
+
+  - name: create the kube user account
+    user: name=kube append=yes state=present createhome=yes shell=/bin/bash
+
+  - name: "create /etc/sudoers.d/kube"
+    file:
+      path: "/etc/sudoers.d/kube"
+      state: touch
+
+  - name: allow 'kube' to use sudo without needing a password
+    lineinfile:
+      path: "/etc/sudoers.d/kube"
+      line: "kube ALL=(ALL) NOPASSWD: ALL"
+      state: present
+
+  - name: Set authorized key for user kube, copying it from current user
+    ansible.posix.authorized_key:
+      user: "{{ item  }}" 
+      state: present
+      key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    loop:
+      - kube 
+
+  - name: Copy bash_aliases, vimrc, screenrc file.
+    template:
+      src:  "{{ item.src }}"
+      dest: "{{ item.dest }}"
+      owner: kube 
+      group: kube
+      mode: 0600
+    loop:
+      - src:  ./files/bash_aliases 
+        dest: /home/kube/.bash_aliases
+      - src:  ./files/vimrc
+        dest: /home/kube/.vimrc
+      - src:  ./files/screenrc
+        dest: /home/kube/.screenrc
+
+  - name: Create containerd config file
+    file:
+      path: "/etc/modules-load.d/containerd.conf"
+      state: "touch"
+
+  - name: Add conf for containerd
+    blockinfile:
+      path: "/etc/modules-load.d/containerd.conf"
+      block: |
+            overlay
+            br_netfilter
+
+  - name: modprobe
+    shell: |
+           sudo modprobe overlay
+           sudo modprobe br_netfilter
+
+  - name: Set system configurations for Kubernetes networking
+    file:
+      path: "/etc/sysctl.d/99-kubernetes-cri.conf"
+      state: "touch"
+
+  - name: Add conf for containerd
+    blockinfile:
+      path: "/etc/sysctl.d/99-kubernetes-cri.conf"
+      block: |
+            net.bridge.bridge-nf-call-iptables = 1
+            net.ipv4.ip_forward = 1
+            net.bridge.bridge-nf-call-ip6tables = 1
+
+  - name: Apply new settings
+    command: sudo sysctl --system
+
+
+  - name: Creates a dir in /etc/apt/sources.list.d/backup
+    file:
+      path: "{{ item }}"
+      state: directory
+    loop:
+      - /etc/apt/sources.list.d/backup 
+
+  - name: makes a backup of all repository are located in /etc/apt/sources.list.d/backup
+    shell: |
+           sudo mv /etc/apt/sources.list.d/*.list /etc/apt/sources.list.d/backup/ 
+    ignore_errors: True
+    register: command_result
+    failed_when: "'FAILED' in command_result.stderr"
+
+  - name: install containerd
+    shell: |
+           sudo apt-get update && sudo apt-get install -y containerd
+           sudo mkdir -p /etc/containerd
+           sudo containerd config default | sudo tee /etc/containerd/config.toml
+           sudo systemctl restart containerd
+
+
+  - name: Install some useful packages
+    apt:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - whois 
+      - git 
+      - curl 
+      - gnupg2 
+      - software-properties-common
+      - apt-transport-https 
+      - ca-certificates 
+      - unzip 
+      - python3 
+      - net-tools
+      - open-vm-tools
+      - openssh-server
+      - perl
+      - nftables
+      - rsync
+      - open-iscsi
+      - lsscsi
+      - sg3-utils
+      - multipath-tools
+      - scsitools
+      - ncal
+
+  - name: Copy multipath.conf configuration file
+    ansible.builtin.copy:
+      # Replace with the path to your updated Netplan config
+      src: ./files/multipath.conf 
+      dest: /etc/multipath.conf
+      owner: root
+      group: root
+      mode: '0644'
+    become: yes
+
+  - name: Set scanning to manual
+    shell: |
+            sudo sed -i '/node.session.scan/d' /etc/iscsi/iscsid.conf
+            sudo echo "node.session.scan = manual" >> /etc/iscsi/iscsid.conf
+            sudo systemctl enable multipath-tools
+            sudo systemctl enable open-iscsi.service
+            sudo systemctl start multipath-tools
+            sudo systemctl start open-iscsi.service
+    ignore_errors: True
+    register: command_result
+    failed_when: "'FAILED' in command_result.stderr"
+
+  - name: Add Kubernetes rep key 
+    shell: |
+            curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+  - name: Create kubernetes repo file
+    file:
+      path: "/etc/apt/sources.list.d/kubernetes.list"
+      state: "touch"
+
+  - name: Add K8s Source
+    blockinfile:
+      path: "/etc/apt/sources.list.d/kubernetes.list"
+      block: |
+             deb https://apt.kubernetes.io/ kubernetes-xenial main
+
+  - name: install kubernetes
+    shell: |
+            sudo apt-get update
+            sudo apt-get install -y kubelet kubeadm kubectl
+            #sudo apt-get install -y kubelet=1.20.1-00 kubeadm=1.20.1-00 kubectl=1.20.1-00
+            sudo apt-mark hold kubelet kubeadm kubectl
+
+  - name: Create Helm repo file
+    file:
+      path: "/etc/apt/sources.list.d/helm-stable-debian.list"
+      state: "touch"
+
+  - name: Add Helm Source
+    blockinfile:
+      path: "/etc/apt/sources.list.d/helm-stable-debian.list"
+      block: |
+             deb [arch=amd64 signed-by=/usr/share/keyrings/helm.gpg] https://baltocdn.com/helm/stable/debian/ all main
+
+  - name: install helm
+    shell: |
+            curl https://baltocdn.com/helm/signing.asc | gpg --dearmor | sudo tee /usr/share/keyrings/helm.gpg > /dev/null
+            sudo apt-get install apt-transport-https --yes
+            sudo apt-get update
+            sudo apt-get install -y helm 

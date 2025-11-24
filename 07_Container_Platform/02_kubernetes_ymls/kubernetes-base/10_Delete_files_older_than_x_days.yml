@@ -1,0 +1,14 @@
+---
+- hosts: all
+  tasks:
+    - name: find all files that are older than 10 days
+      find:
+        paths: /data/log/*/
+        age: 10d
+        recursive: yes
+      register: filesOlderThan10
+    - name: remove older than 10
+      file:
+        path: "{{ item.path }}" 
+        state: absent
+      with_items: "{{ (filesOlderThan10.files }}"

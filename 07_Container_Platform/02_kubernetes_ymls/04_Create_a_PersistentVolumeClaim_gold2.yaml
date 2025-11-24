@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: task-pv-claim-gold2
+spec:
+  storageClassName: ontap-gold 
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 4Gi

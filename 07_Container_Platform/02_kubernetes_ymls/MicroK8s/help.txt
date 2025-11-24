@@ -1,0 +1,139 @@
+sudo ip addr remove 192.168.56.12/24 dev enp0s3
+sudo ip link set up enp0s3
+
+127.0.0.1 localhost
+127.0.1.1 k8smaster1
+#
+192.168.56.12 k8smaster1
+192.168.56.13 k8sworker1
+192.168.56.14 k8sworker2
+
+ubuntu@k8smaster1:~$ cat /etc/netplan/00-installer-config.yaml
+# This is the network config written by 'subiquity'
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 192.168.56.12/24
+      nameservers:
+        addresses:
+          - 127.0.0.1
+    enp0s8:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 10.0.3.12/24
+      routes:
+        - to: default
+          via: 10.0.3.2
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 4.2.2.4
+    enp0s9:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 192.168.178.12/24
+      nameservers:
+        addresses:
+          - 127.0.0.1
+
+ubuntu@k8smaster1:~$
+
+Requirement
+OS: Ubuntu 22.04
+snap
+
+2. Install microK8s on Ubuntu
+root@k8smaster1:~# sudo snap install microk8s --classic
+microk8s (1.29/stable) v1.29.4 from Canonical✓ installed
+root@k8smaster1:~#
+
+Allow in firewall
+root@k8smaster1:~# sudo ufw allow in on cni0 && sudo ufw allow out on cni0
+Rules updated
+Rules updated (v6)
+Rules updated
+Rules updated (v6)
+root@k8smaster1:~# sudo ufw default allow routed
+Default routed policy changed to 'allow'
+(be sure to update your rules accordingly)
+root@k8smaster1:~#
+
+
+3. Enable addons
+By default we get a barebones upstream Kubernetes. Additional services, such as dashboard, core-dns or local storage can be enabled by running the microk8s enable command:
+
+microk8s enable dns 
+microk8s enable dashboard
+microk8s enable storage
+These addons can be disabled at anytime by running the microk8s disable command:
+
+microk8s disable dns 
+microk8s disable dashboard
+microk8s disable storage
+With microk8s status you can see the list of available addons and the ones currently enabled.
+
+List of the most important addons
+dns: Deploy DNS. This addon may be required by others, thus we recommend you always enable it.
+dashboard: Deploy kubernetes dashboard.
+storage: Create a default storage class. This storage class makes use of the hostpath-provisioner pointing to a directory on the host.
+ingress: Create an ingress controller.
+gpu: Expose GPU(s) to MicroK8s by enabling the nvidia-docker runtime and nvidia-device-plugin-daemonset. Requires NVIDIA drivers to be already installed on the host system.
+istio: Deploy the core Istio services. You can use the microk8s istioctl command to manage your deployments.
+registry: Deploy a docker private registry and expose it on localhost:32000. The storage addon will be enabled as part of this addon.
+
+4. Check microk8s status
+# microk8s status
+# microk8s kubectl get all
+
+
+4. Accessing the Kubernetes dashboard
+Now that we have enabled the dns and dashboard addons we can access the available dashboard. To do so we first check the deployment progress of our addons with microk8s kubectl get all --all-namespaces. It only takes a few minutes to get all pods in the “Running” state:
+
+
+Kubernetes dashboard
+As we see above the kubernetes-dashboard service in the kube-system namespace has a ClusterIP of 10.152.183.64 and listens on TCP port 443. The ClusterIP is randomly assigned, so if you follow these steps on your host, make sure you check the IP adress you got. Point your browser to https://10.152.183.64:443 and you will see the kubernetes dashboard UI. To access the dashboard use the default token retrieved with:
+
+token=$(microk8s kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
+microk8s kubectl -n kube-system describe secret $token
+
+
+
+5. create deployment on microk8s to verify functionality
+Log in to the MicroK8s controller. For this demonstration, we’ll deploy an NGINX web server application. We’ll name this deployment nginx-webserver and use the official NGINX container image for the deployment. The command for this is:
+
+microk8s kubectl create deployment nginx-webserver --image=nginx
+
+Verify the deployment was successful with the command:
+microk8s kubectl get pods
+
+At this point, the NGINX application is running but isn’t accessible. In order to make it accessible, we also have to deploy a service. What we’ll do here is expose our nginx-webserver deployment, using the type “NodePort” on port 80. What is NodePort? Simply put, a NodePort is an open port on every node connected to your cluster. Kubernetes routes incoming traffic on the NodePort to your deployed service or application.
+
+To deploy the service, the command will look like this:
+microk8s kubectl expose deployment nginx-webserver --type="NodePort" --port 80
+
+If you attempt to access the running container on port 80, such as http://192.168.1.45, you’ll find it inaccessible. What gives? Well, Kubernetes maps internal port 80 to a random internal port. Before we can access the running web server, we have to find out what port it has been mapped to. For that, issue the command:
+microk8s kubectl get svc nginx-webserver
+
+https://phoenixnap.com/kb/microk8s-ingress
+https://benbrougher.tech/posts/microk8s-ingress/
+
+6. Integrated commands
+There are many commands that ship with MicroK8s. We’ve only seen the essential ones in this tutorial. Explore the others at your own convenience:
+
+microk8s status: Provides an overview of the MicroK8s state (running / not running) as well as the set of enabled addons
+microk8s enable: Enables an addon
+microk8s disable: Disables an addon
+microk8s kubectl: Interact with kubernetes
+microk8s config: Shows the kubernetes config file
+microk8s istioctl: Interact with the istio services; needs the istio addon to be enabled
+microk8s inspect: Performs a quick inspection of the MicroK8s intallation
+microk8s reset: Resets the infrastructure to a clean state
+microk8s stop: Stops all kubernetes services
+microk8s start: Starts MicroK8s after it is being stopped

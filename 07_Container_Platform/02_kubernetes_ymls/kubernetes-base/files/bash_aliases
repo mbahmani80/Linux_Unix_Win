@@ -1,0 +1,40 @@
+source /usr/share/bash-completion/bash_completion
+source /etc/bash_completion
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
+
+alias du='du -h'
+alias ..='cd ..'
+## Colorize the ls output ##
+alias ls='ls --color=auto'
+ 
+## Use a long listing format ##
+alias ll='ls -la'
+ 
+## Show hidden files ##
+alias l.='ls -d .* --color=auto'
+
+## Colorize the grep command output for ease of use (good for log files)##
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+
+
+alias bc='bc -l'
+
+alias vi=vim
+alias svi='sudo vi'
+alias vis='vim "+set si"'
+alias edit='vim'
+
+
+# distro specific  - Debian / Ubuntu and friends #
+# install with apt-get
+alias apt-get="sudo apt-get"
+alias updatey="sudo apt-get --yes"
+ 
+# update on one command
+alias update='sudo apt-get update && sudo apt-get upgrade'
+
+

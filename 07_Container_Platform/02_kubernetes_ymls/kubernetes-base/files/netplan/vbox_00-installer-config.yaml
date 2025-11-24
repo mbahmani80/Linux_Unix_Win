@@ -1,0 +1,33 @@
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    enp0s3:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 192.168.56.12/24
+      nameservers:
+        addresses:
+          - 127.0.0.1
+    enp0s8:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 10.0.3.12/24
+      routes:
+        - to: default
+          via: 10.0.3.2
+      nameservers:
+        addresses:
+          - 8.8.8.8
+          - 4.2.2.4
+    enp0s9:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 192.168.178.12/24
+      nameservers:
+        addresses:
+          - 127.0.0.1
+

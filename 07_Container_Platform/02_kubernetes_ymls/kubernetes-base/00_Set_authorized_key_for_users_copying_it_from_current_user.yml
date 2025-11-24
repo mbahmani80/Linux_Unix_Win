@@ -1,0 +1,41 @@
+# ansible-playbook -i hosts 00_Set_authorized_key_for_users_copying_it_from_current_user.yml --ask-become-pass
+---
+#- hosts: kubernetes-Trident1 
+- hosts: k8s 
+  become: true
+  become_method: sudo
+  become_user: root 
+  gather_facts: no
+
+
+#  - name: Copy known_hosts file.
+#    template:
+#      src: ./files/known_hosts
+#      dest: "/home/{{ item }}/.ssh/known_hosts"
+#      owner: "{{ item }}"
+#      group: "{{ item }}"
+#      mode: 0755
+#    loop:
+#      - sysadmin
+#      - ubuntu
+#
+#  - name: Copy authorized_key sile.
+#    template:
+#      src: ./files/authorized_keys
+#      dest: "/home/{{ item }}/.ssh/known_hosts"
+#      owner: "{{ item }}"
+#      group: "{{ item }}"
+#      mode: 0755
+#    loop:
+#      - sysadmin
+#      - ubuntu
+
+  tasks:
+  - name: Set authorized key for users sysadmin,ubuntu copying it from current user
+    ansible.posix.authorized_key:
+      user: "{{ item  }}" 
+      state: present
+      key: "{{ lookup('file', lookup('env','HOME') + '/.ssh/id_rsa.pub') }}"
+    loop:
+      - ubuntu
+#      - sysadmin

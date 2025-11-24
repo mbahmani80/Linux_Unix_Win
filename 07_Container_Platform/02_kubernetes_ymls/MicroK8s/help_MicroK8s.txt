@@ -1,0 +1,308 @@
+How to set up Kubernetes Cluster with MicroK8s
+MicroK8s is a lightweight all-in-one Kubernetes distribution that’s maintained by Canonical – the makers of the Ubuntu operating system.
+
+install kubernetes ubuntu
+MicroK8s is based on unmodified upstream Kubernetes releases. It’s suitable for production use as it supports multi-Node clusters, comes with sane defaults for commonly used options, and bundles popular addons to simplify your setup experience.
+
+Step 1: Install MicroK8s
+Installers for Windows and macOS are available from the MicroK8s website.
+
+On Linux, MicroK8s is only distributed using Canonical’s Snap packaging format.
+
+Run the following command to start your cluster:
+
+$ sudo snap install microk8s --classic
+Afterwards, you should add your user account to the microk8s group so you can run microk8s commands without encountering permissions errors:
+
+$ sudo usermod -a -G microk8s $USER
+$ newgrp microk8s
+Step 2: Interact with your cluster
+MicroK8s bundles a version of Kubectl which you can access using microk8s kubectl:
+
+$ microk8s kubectl get nodes
+NAME       STATUS   ROLES    AGE    VERSION
+ubuntu22   Ready    <none>   103m   v1.27.2
+Now you can deploy resources into your cluster using familiar Kubectl commands.
+
+To use an existing Kubectl installation, you should run the microk8s config command to export your cluster’s connection details to a Kubeconfig file:
+
+$ microk8s config > ~/microk8s.kubeconfig
+$ KUBECONFIG=~/microk8s.kubeconfig kubectl get pods
+Step 3: Enable Addons
+MicroK8s has several optional addons which enable features such as Ingress, HostPath storage, RBAC, and the Kubernetes Dashboard, in addition to popular community software including Cert-Manager, Minio, and Prometheus.
+
+To view available and enabled addons, run the microk8s status command:
+
+$ microk8s status
+microk8s is running
+high-availability: no
+  datastore master nodes: 127.0.0.1:19001
+  datastore standby nodes: none
+addons:
+  enabled:
+    dns                  # (core) CoreDNS
+    ha-cluster           # (core) Configure high availability on the current node
+    helm                 # (core) Helm - the package manager for Kubernetes
+    helm3                # (core) Helm 3 - the package manager for Kubernetes
+  disabled:
+    cert-manager         # (core) Cloud native certificate management
+    community            # (core) The community addons repository
+    dashboard            # (core) The Kubernetes dashboard
+Addons are enabled with microk8s enable:
+
+$ microk8s enable dashboard
+Enabling an addon will usually output information that helps you to get started using it.
+
+Step 3: Add More Nodes
+MicroK8s is ideal for both local and production environments.
+
+To add another Node to your cluster, first, install MicroK8s on the new Node and then run microk8s add-node on your existing host. This will output the command to run on the new Node to join it to your cluster.
+
+$ microk8s add-node
+From the node you wish to join to this cluster, run the following:
+microk8s join 192.168.122.210:25000/b346782cc8956830924c04f2cf1b1745/dadf654db615
+
+Use the '--worker' flag to join a node as a worker not running the control plane, eg:
+microk8s join 192.168.122.210:25000/b346782cc8956830924c04f2cf1b1745/dadf654db615 --worker
+
+If the node you are adding is not reachable through the default interface you can use one of the following:
+microk8s join 192.168.122.210:25000/b346782cc8956830924c04f2cf1b1745/dadf654db615
+microk8s join 192.168.123.1:25000/b346782cc8956830924c04f2cf1b1745/dadf654db615
+microk8s join 172.17.0.1:25000/b346782cc8956830924c04f2cf1b1745/dadf654db615
+When to Use MicroK8s?
+MicroK8s is a good choice when you want to standardize on one Kubernetes distribution across all your infrastructure, from developer workstations to production servers. It supports simple multi-Node deployments that require minimal manual configuration.
+
+One downside of MicroK8s is its dependence on the Snap packaging format. If you’re not using Snaps, then you won’t be able to run MicroK8s on Linux. This prevents its use on Linux distributions without Snap support or where an administrator has decided to prevent the use of Snaps.
+
+================================================
+
+A Complete Guide to Setup a Kubernetes (K8s) Cluster Using Ansible
+https://tecadmin.net/setup-kubernetes-cluster-using-ansible/
+Kubernetes is great for managing containers, making it easy for developers to deploy and scale applications. For example, you can use Kubernetes to run a website that can handle lots of traffic, manage a big data processing system, or deploy microservices. But setting up a Kubernetes cluster can be tricky, with many steps and settings. This is where Ansible helps. Ansible is a tool that automates the setup process, making it much easier to create a Kubernetes cluster.
+Kubernetes Cluster Automation with Ansible
+Kubernetes Cluster Automation with Ansible
+
+In this guide, we’ll show you how to build a Kubernetes cluster using Ansible. We assume that all nodes in the Kubernetes cluster are running Ubuntu Linux.
+Prerequisites
+
+Before we start the setup process, make sure you have the following:
+
+    Ansible: Install Ansible on your control machine. This is where you’ll run the Ansible scripts. The control machine can be your local computer or a server.
+    Target Nodes: These are the machines where Kubernetes will be installed. You need at least two nodes: one for the master node and one for a worker node. Make sure these nodes are running a compatible Linux distribution.
+    SSH Access: Ansible uses SSH to communicate with the target nodes. Ensure you have SSH access set up for all target nodes from your control machine.
+
+Step 1: Ansible Installation
+
+First, set up Ansible on your control machine. The installation process depends on your operating system. For Ubuntu and other Debian-based systems, use these commands:
+ADVERTISEMENT
+
+Ad
+
+sudo apt-get update
+sudo apt-get install ansible
+
+Step 2: Setup Inventory File
+
+After installing Ansible, configure the inventory file. Create a file named hosts.ini in your working directory. This file lists all target nodes with their IP addresses, organized into groups like masters and workers. Here’s an example:
+
+
+[masters]
+master ansible_host=192.168.1.100
+
+[workers]
+worker1 ansible_host=192.168.1.101
+worker2 ansible_host=192.168.1.102
+
+Step 3: Setup K8s Cluster Playbook
+
+This playbook will help you set up a Kubernetes cluster using Ubuntu systems. It includes tasks for:
+ADVERTISEMENT
+
+Ad
+
+    Disabling the firewall
+    Turning off swap
+    Configuring network settings
+    Adding the Docker repository
+    Installing Docker and its components
+    Adjusting container runtime settings
+    Adding the Kubernetes repository
+    Installing Kubernetes components (kubelet, kubeadm, kubectl)
+
+Note that kubectl is only installed on nodes identified as masters. The playbook covers everything needed to prepare systems for Kubernetes, focusing on required services, security settings, and essential Kubernetes components.
+
+Create a setup-playbook.yaml file and add the following content:
+
+
+- name: Initialize master and worker nodes
+  hosts: all
+  tasks:
+
+   - name: disable UFW firewall for labs
+     service:
+        name: ufw
+        state: stopped
+        enabled: false
+
+   - name: Disable SWAP
+     shell: |
+       swapoff -a
+
+   - name: Disable SWAP in fstab
+     lineinfile:
+       path: /etc/fstab
+       regexp: '^.*swap.*$'
+       line: '#\0'
+       backrefs: yes
+
+   - name: ensure net.bridge.bridge-nf-call-ip6tables is set to 1
+     sysctl:
+       name: net.bridge.bridge-nf-call-iptables
+       value: '1'
+       state: present
+       reload: yes
+
+   - name: Installation of apt-utils
+     apt:
+      name: apt-transport-https
+      state: present
+      update_cache: yes
+
+   - name: Adding Docker GPG key
+     ansible.builtin.apt_key:
+       url: https://download.docker.com/linux/ubuntu/gpg
+       state: present
+
+   - name: Adding Docker Repository
+     apt_repository:
+       repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable
+       state: present
+
+   - name: Installation of Docker
+     apt:
+      name: "{{ item }}"
+      state: present
+     loop:
+       - docker-ce
+       - docker-ce-cli
+       - containerd.io
+       - docker-compose
+
+   - name: Setting value of SystemdCgroup
+     shell: |
+       containerd config default | sudo tee /etc/containerd/config.toml | grep SystemdCgroup
+       sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
+
+   - name : Starting Service of Docker
+     service:
+       name: docker
+       state: started
+       enabled: yes
+
+   - name: Add Kubernetes apt repository
+     apt_repository:
+       repo: deb https://apt.kubernetes.io/ kubernetes-xenial main
+       state: present
+
+   - name: Install kubelet and kubeadm
+     apt:
+        name: "{{ item }}"
+        state: present
+     loop:
+       - kubeadm
+       - kubelet
+
+   - name: start kubelet
+     service:
+       name: kubelet
+       enabled: yes
+       state: started
+
+   - name: install kubectl
+     apt:
+        name: kubectl
+        state: present
+     when: "'masters' in group_names"
+
+Execute the playbook by running:
+ADVERTISEMENT
+
+Ad
+
+ansible-playbook -i hosts.ini setup-playbook.yml
+
+Step 4: Setup Master Node
+
+This Ansible playbook is for configuring the master node of a Kubernetes cluster. It initializes the Kubernetes cluster with specific network settings, creates a .kube directory, and copies the kube config file to the user’s home directory for cluster management. It also installs the Calico network plugin to handle pod networking, ensuring pods can communicate across nodes. This playbook automates the initial setup, making it easier to deploy a Kubernetes cluster.
+
+Create a file named master-playbook.yml and add the following content:
+
+
+- name: Configuration of master node
+  hosts: masters
+  tasks:
+    - name: initialize K8S cluster
+      shell: kubeadm init --pod-network-cidr=172.16.0.0/16 --apiserver-advertise-address=192.168.100.5 --ignore-preflight-errors=all
+
+    - name: create .kube directoryi and copy kube config file
+      shell: "{{ item }}"
+      loop:
+        -  mkdir -p $HOME/.kube
+        -  cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+        - chown $(id -u):$(id -g) $HOME/.kube/config
+
+    - name: install Pod network
+      become: yes
+      shell: kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml >> pod_network_setup.txt
+      args:
+        chdir: $HOME
+        creates: pod_network_setup.txt
+
+Execute the playbook with command:
+
+ansible-playbook -i hosts.ini master-playbook.yml
+
+Step 5: Setup Worker Nodes Playbook
+
+This playbook automates the process of adding worker nodes to a Kubernetes cluster. It runs on all nodes, generates a join command on the master node, and sends it to the worker nodes. First, it fetches the join command using kubeadm token create and stores it. Then, it sets a fact with this command for the worker nodes to use. Finally, the worker nodes use this command to join the Kubernetes cluster, bypassing preflight checks. This playbook simplifies adding new nodes to the cluster.
+
+Create a file named worker-playbook.yml and add below content:
+
+
+- name: Generating token on master node and token deployment to worker node
+  hosts: all
+  gather_facts: false
+  tasks:
+    - name: get join command
+      shell: kubeadm token create --print-join-command
+      register: join_command_raw
+      when: "'masters' in group_names"
+
+    - name: set join command
+      set_fact:
+        join_command: "{{ join_command_raw.stdout_lines[0] }}"
+      when: "'masters' in group_names"
+
+    - name: join cluster
+      shell: "{{ hostvars['master'].join_command }} --ignore-preflight-errors all  >> node_joined.txt"
+      args:
+        chdir: $HOME
+        creates: node_joined.txt
+      when: "'workers' in group_names"
+
+Execute the playbook with command:
+
+ansible-playbook -i hosts.ini worker-playbook.yml
+
+Step 5: Verifying the Cluster
+
+Once the playbooks have been executed, you can verify that the Kubernetes cluster is set up correctly.
+
+On the master node, run:
+
+kubectl get nodes
+
+You should see all the nodes listed with their statuses as Ready.
+Conclusion
+
+By following these steps, you have successfully set up a Kubernetes cluster using Ansible. This method provides a scalable and repeatable process, making it easier to manage and automate the deployment of Kubernetes clusters. As you get more comfortable with Ansible and Kubernetes, you can customize your playbooks to fit your needs, like adding more worker nodes or setting up advanced features.

@@ -1,0 +1,27 @@
+How to set up Kubernetes Cluster with K3s
+K3s is a tiny Kubernetes distribution that ships as a single binary under 70MB. Created by SUSE Rancher, it’s now a CNCF sandbox project.
+
+installing kubernetes windows
+K3s is extraordinarily easy to get started with: download and run the binary to launch your Kubernetes cluster, without any external dependencies. It has minimal hardware requirements (1 CPU core, 512MB of RAM) and supports modern Linux systems using the x86_64, ARM, and S390X architectures.
+
+Step 1: Install K3s
+Running the official installation script is the quickest way to start K3s. This will download the binary and register a system service so K3s automatically starts when your host reboots:
+
+$ curl -sfL https://get.k3s.io | sh -
+Wait a few seconds for K3s to start, then use the k3s kubectl command to interact with your cluster with the bundled version of Kubectl:
+
+$ sudo k3s kubectl get nodes
+NAME       STATUS   ROLES                  AGE   VERSION
+ubuntu22   Ready    control-plane,master   5s    v1.27.3+k3s1
+Step 2: Add More Nodes
+K3s is production-ready and capable of supporting multi-Node clusters.
+
+To add another Node, you can simply repeat the installation script on your new host. You’ll need to set the K3S_URL and K3S_TOKEN environment variables to connect the Node to your existing cluster.
+
+$ curl -sfL https://get.k3s.io | K3S_URL=https://your-first-host:6443 K3S_TOKEN=your-token sh -
+You can find your cluster’s token by reading the file at /var/lib/rancher/k3s/server/node-token on your main Node.
+
+When to Use K3s?
+K3s is a multi-purpose distribution that can be used in any environment.
+
+It’s tiny size and self-contained binary make it ideal for development use, but it’s also great for resource-constrained production infrastructure. As a result, K3s is particularly ideal for IoT and edge computing workloads which would be unable to support larger Kubernetes distributions.
