@@ -71,6 +71,14 @@ fi
 mount -t tmpfs -o size=4G tmpfs ${TMPFS}
 
 # =============================
+# Testing and collecting technical information 
+# =============================
+dmesg > ${TMPFS}/dmesg.out.txt
+pciconf -lv > ${TMPFS}/pciconf.out.txt
+devinfo -v > ${TMPFS}/devinfo.out.txt
+acpidump -dt > ${TMPFS}/acpidump.out.txt
+
+# =============================
 # Destroy existing ZFS pool if exists
 # =============================
 PCHECK=$(zfs list 2>/dev/null | grep -w ${ZNAME} | awk '{print $1}')
