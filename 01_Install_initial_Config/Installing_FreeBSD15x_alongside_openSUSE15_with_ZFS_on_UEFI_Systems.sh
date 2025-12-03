@@ -15,8 +15,8 @@ read -p "Press Enter to continue after verifying, or Ctrl+C to abort."
 # Configuration - CHANGE CAREFULLY
 # =============================
 
-DISK=da0                  # Disk to install FreeBSD on (e.g., /dev/da0)
-PARTITION=da0p3           # your dedicated FreeBSD partition
+DISK=/dev/da0                  # Disk to install FreeBSD on (e.g., /dev/da0)
+PARTITION=/dev/da0s3           # your dedicated FreeBSD partition
 ZNAME=zroot               # ZFS pool name
 ZLABEL=disk0              # Partition label for ZFS root
 COMPRESSION=lz4           # ZFS compression algorithm
@@ -25,7 +25,7 @@ TMPFS=/tmp/tmpfs          # Temporary tmpfs for caching
 IP_ADDR=192.168.1.50      # Static IP for FreeBSD installer
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
-EFI_PART=/dev/sda1        # Shared EFI partition from openSUSE
+EFI_PART=/dev/da0s1        # Shared EFI partition from openSUSE
 NIC=em0                   # Network interface
 
 # =============================
