@@ -131,15 +131,6 @@ ln -s usr/home home
 chmod 1777 ${MOUNT}/var/tmp
 
 # =============================
-# Configure network
-# =============================
-ifconfig ${NIC} inet ${IP_ADDR} netmask ${NETMASK} up
-route add default ${GATEWAY}
-# Persist configuration
-echo "ifconfig_${NIC}=\"inet ${IP_ADDR} netmask ${NETMASK}\"" >> ${MOUNT}/etc/rc.conf
-echo "defaultrouter=\"${GATEWAY}\"" >> ${MOUNT}/etc/rc.conf
-
-# =============================
 # Install base system
 # =============================
 cd ${TMPFS}
@@ -152,6 +143,15 @@ tar -xpf lib32.txz -C ${MOUNT}/
 tar -xpf kernel.txz -C ${MOUNT}/
 
 cp ${TMPFS}/zpool.cache ${MOUNT}/boot/zfs/zpool.cache
+
+# =============================
+# Configure network
+# =============================
+ifconfig ${NIC} inet ${IP_ADDR} netmask ${NETMASK} up
+route add default ${GATEWAY}
+# Persist configuration
+echo "ifconfig_${NIC}=\"inet ${IP_ADDR} netmask ${NETMASK}\"" >> ${MOUNT}/etc/rc.conf
+echo "defaultrouter=\"${GATEWAY}\"" >> ${MOUNT}/etc/rc.conf
 
 # =============================
 # Configure UEFI bootloader
