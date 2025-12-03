@@ -170,6 +170,19 @@ hint.p4tcc.0.disabled="1"
 hint.acpi_throttle.0.disabled="1"
 hw.pci.do_power_nodriver=3
 hw.snd.latency=7
+# USB
+usb_load="YES"
+ehci_load="YES"
+uhci_load="YES"
+ums_load="YES"
+u3g_load="YES"
+umass_load="YES"
+ukbd_load="YES"
+# Sound
+sound_enable="YES"
+snd_hda_load="YES"
+# ACPI-Modul fuer Thinkpad laden
+acpi_ibm_load="YES"
 EOF
 
 # =============================
@@ -195,6 +208,15 @@ cat <<EOF >> ${MOUNT}/etc/sysctl.conf
 kern.coredump=0
 kern.corefile=/dev/null
 net.inet.tcp.delayed_ack=0
+# some fine tuning has to be done to get suspend/resume working properly:
+hw.acpi.reset_video=0
+hw.acpi.lid_switch_state=S3
+hw.acpi.sleep_button_state=S3
+hw.acpi.power_button_state=S5
+hw.acpi.sleep_delay=3
+hw.acpi.verbose=1
+hw.syscons.sc_no_suspend_vtswitch=0
+dev.acpi_ibm.0.events=1
 EOF
 
 # =============================
