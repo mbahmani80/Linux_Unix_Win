@@ -15,8 +15,8 @@ read -p "Press Enter to continue after verifying, or Ctrl+C to abort."
 # Configuration - CHANGE CAREFULLY
 # =============================
 
-DISK=/dev/da0                  # Disk to install FreeBSD on (e.g., /dev/da0)
-PARTITION=/dev/da0s3           # your dedicated FreeBSD partition
+DISK=/dev/nda1            # Disk to install FreeBSD on (e.g., /dev/nda1)
+PARTITION=/dev/nda1p6     # your dedicated FreeBSD partition
 ZNAME=zroot               # ZFS pool name
 ZLABEL=disk0              # Partition label for ZFS root
 COMPRESSION=lz4           # ZFS compression algorithm
@@ -25,9 +25,14 @@ TMPFS=/tmp/tmpfs          # Temporary tmpfs for caching
 IP_ADDR=192.168.1.50      # Static IP for FreeBSD installer
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
-EFI_PART=/dev/da0s1        # Shared EFI partition from openSUSE
+EFI_PART=/dev/nda1p1      # Shared EFI partition from openSUSE
 NIC=em0                   # Network interface
+USB_drive_P3=/dev/da0s3              # data partition of USB drive. all scripts and base.txz, kernel.txz, lib32.txz are stored here.
+USB_drive_P3_Mount=/tmp/usb # Temporary mount point for USB  data partition
+Offline=yes
 
+#mkdir ${USB_drive_P3_Mount}
+#mount -t msdosfs ${USB_drive_P3} ${USB_drive_P3_Mount}
 # =============================
 # Warning and confirmation
 # =============================
@@ -141,16 +146,27 @@ chmod 1777 ${MOUNT}/var/tmp
 # =============================
 # Install base system
 # =============================
-cd ${TMPFS}
-fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/base.txz
-fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/kernel.txz
-fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/lib32.txz
 
-tar -xpf base.txz -C ${MOUNT}/
-tar -xpf lib32.txz -C ${MOUNT}/
-tar -xpf kernel.txz -C ${MOUNT}/
+if [ "$Offline" = "yes" ]; then
+    echo "Performing offline installation..."
+    cd "${USB_drive_P3_Mount}" || exit 1
+    tar -xpf base.txz -C "${MOUNT}/"
+    [ -f lib32.txz ] && tar -xpf lib32.txz -C "${MOUNT}/"
+    tar -xpf kernel.txz -C "${MOUNT}/"
+else
+    echo "Performing online installation..."
+    cd "${TMPFS}" || exit 1
+    fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/base.txz
+    fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/kernel.txz
+    fetch https://download.freebsd.org/ftp/releases/amd64/15.0-RELEASE/lib32.txz || true  # skip if not available
 
-cp ${TMPFS}/zpool.cache ${MOUNT}/boot/zfs/zpool.cache
+    tar -xpf base.txz -C "${MOUNT}/"
+    [ -f lib32.txz ] && tar -xpf lib32.txz -C "${MOUNT}/"
+    tar -xpf kernel.txz -C "${MOUNT}/"
+fi
+
+# Copy zpool cache if exists
+[ -f "${TMPFS}/zpool.cache" ] && cp "${TMPFS}/zpool.cache" "${MOUNT}/boot/zfs/zpool.cache"
 
 # =============================
 # Configure network
