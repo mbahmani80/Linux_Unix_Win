@@ -1,5 +1,5 @@
 #!/bin/sh
-# FreeBSD 15 UEFI ZFS Install Script for Dual-Boot with openSUSE
+# Installing FreeBSD 14x / 15x alongside linux and windows with ZFS on UEFI Systems
 # WARNING: This script will DESTROY ALL DATA on the specified partition!
 # Verify disk, partition, and labels before running.
 
@@ -25,7 +25,7 @@ TMPFS=/tmp/tmpfs          # Temporary tmpfs for caching
 IP_ADDR=192.168.1.50      # Static IP for FreeBSD installer
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
-EFI_PART=/dev/nda1p1      # Shared EFI partition from openSUSE
+EFI_PART=/dev/nda1p1      # Shared EFI partition
 NIC=em0                   # Network interface
 USB_drive_P3=/dev/da0s3              # data partition of USB drive. all scripts and base.txz, kernel.txz, lib32.txz are stored here.
 USB_drive_P3_Mount=/tmp/usb # Temporary mount point for USB  data partition
@@ -178,6 +178,12 @@ echo "ifconfig_${NIC}=\"inet ${IP_ADDR} netmask ${NETMASK}\"" >> ${MOUNT}/etc/rc
 echo "defaultrouter=\"${GATEWAY}\"" >> ${MOUNT}/etc/rc.conf
 
 # =============================
+# fstab ZFS manages mounted filesystems
+# only tmpfs is added.
+# =============================
+echo 'tmpfs /tmp tmpfs rw,mode=1777 0 0' >> ${MOUNT}/etc/fstab
+
+# =============================
 # Configure UEFI bootloader
 # =============================
 mkdir -p /tmp/efi
@@ -241,26 +247,6 @@ hw.acpi.sleep_delay=3
 hw.acpi.verbose=1
 hw.syscons.sc_no_suspend_vtswitch=0
 dev.acpi_ibm.0.events=1
-EOF
-
-# =============================
-# Configure make.conf
-# =============================
-cat <<EOF >> ${MOUNT}/etc/make.conf
-CPUTYPE?=core2
-CFLAGS=-O2 -pipe
-COPTFLAGS=-O2 -pipe
-FORCE_MAKE_JOBS=yes
-MAKE_JOBS_NUMBER=4
-OPTIMIZED_CFLAGS=YES
-BUILD_OPTIMIZED=YES
-WITH_CPUFLAGS=YES
-WITH_OPTIMIZED_CFLAGS=YES
-WITH_KMS=YES
-WITH_NEW_XORG=YES
-WITH_SIMD=YES
-WITH_OPENMP=YES
-WITH_THREADS=YES
 EOF
 
 # =============================
