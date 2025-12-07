@@ -191,64 +191,240 @@ mount -t msdosfs ${EFI_PART} /tmp/efi
 mkdir -p /tmp/efi/EFI/freebsd
 cp ${MOUNT}/boot/loader.efi /tmp/efi/EFI/freebsd/BOOTX64.EFI
 
+# =============================
+# Configure /boot/loader.conf
+# =============================
 cat <<EOF > ${MOUNT}/boot/loader.conf
+# ----------------------------------------
+# BOOT LOADER APPEARANCE
+# ----------------------------------------
 loader_logo="beastie"
+# grep loader_logo /boot/defaults/loader.conf
+# loader_logo="orbbw"            # Desired logo: orbbw, orb, fbsdbw, beastiebw, beastie, none
+
+# ----------------------------------------
+# FILESYSTEM: ZFS ROOT
+# ----------------------------------------
 zfs_load="YES"
-linux_load="YES"
+#vfs.root.mountfrom="zfs:zroot"
 vfs.root.mountfrom="zfs:${ZNAME}"
+
+# ----------------------------------------
+# CPU / POWER MANAGEMENT
+# ----------------------------------------
 hint.p4tcc.0.disabled="1"
 hint.acpi_throttle.0.disabled="1"
 hw.pci.do_power_nodriver=3
-hw.snd.latency=7
-# USB
+
+# Fully disable suspend-to-RAM
+hw.acpi.enable_sleep=0
+
+# ----------------------------------------
+# LINUX COMPAT
+# ----------------------------------------
+linux_load="YES"
+
+# ----------------------------------------
+# USB CORE + KEY DEVICE DRIVERS
+# (These MUST be loaded early)
+# ----------------------------------------
 usb_load="YES"
-ehci_load="YES"
-uhci_load="YES"
+ukbd_load="YES"
 ums_load="YES"
+
+# Optional USB extras (safe to load in rc.conf instead)
 u3g_load="YES"
 umass_load="YES"
-ukbd_load="YES"
-# Sound
-sound_enable="YES"
+
+# ----------------------------------------
+# SOUND SYSTEM
+# (snd_hda alone is usually enough)
+# ----------------------------------------
+sound_load="YES"
 snd_hda_load="YES"
-# ACPI-Modul fuer Thinkpad laden
+
+# ----------------------------------------
+# TOUCHSCREEN
+# ----------------------------------------
+utouch_load="YES"
+
+# ----------------------------------------
+# THINKPAD ACPI EXTENSIONS
+# ----------------------------------------
 acpi_ibm_load="YES"
+
+# ----------------------------------------
+# DEVICE DRIVER MANAGEMENT
+# ----------------------------------------
+devmatch_blocklist="if_iwm"
+#devmatch_blocklist="if_iwlwifi"
 EOF
 
 # =============================
-# Configure rc.conf
+# Configure /etc/rc.conf
 # =============================
-cat <<EOF > ${MOUNT}/etc/rc.conf
+cat >> ${MOUNT}/etc/rc.conf << 'EOF'
+
+########## BASE SYSTEM ##########
+# System hostname
+hostname="mbctux.lab.local"
+
+# Disable crash dumps
+dumpdev="NO"
+
+# ZFS filesystem support
 zfs_enable="YES"
+
+# Mouse support in console
 moused_enable="YES"
+
+# Power management settings
 powerd_enable="YES"
 powerd_flags="-a maximum -b adaptive -i 85 -r 60 -p 100"
 performance_cx_lowest="HIGH"
 performance_cpu_freq="NONE"
 economy_cx_lowest="HIGH"
 economy_cpu_freq="NONE"
-dumpdev="NO"
+
+# Network time synchronization
+ntpd_enable="YES"
+ntpd_sync_on_start="YES"
+
+########## DESKTOP / GUI ##########
+# Display manager (KDE/Plasma)
+sddm_enable="YES"
+
+# User filesystem helpers
+fusefs_enable="YES"
+automount_enable="YES"
+automountd_enable="YES"
+autounmountd_enable="YES"
+dsbmd_enable="YES"
+
+########## AUDIO / IPC ##########
+# Desktop communication bus (required by most GUI apps)
+# Enables the system message bus so desktop applications can communicate and function correctly.
+dbus_enable="YES"
+
+# Hardware event manager (automatic driver/hotplug detection)
+# Enables automatic hardware detection, driver loading, and device event handling.
+devd_enable="YES"
+
+# PipeWire audio server
+pipewire_enable="YES"
+wireplumber_enable="YES"
+
+########## NVIDIA / GPU ##########
+# Enable Linux binary compatibility (needed for NVIDIA CUDA)
+linux_enable="YES"
+
+# Load NVIDIA driver modules
+nvidia_load="YES"
+kld_list="${kld_list} nvidia-modeset"
+
+# Enable headless NVIDIA Xorg (DISPLAY :8)
+nvidia_xorg_enable="YES"
+
+# Intel GPU kernel module (for fallback or hybrid graphics)
+kld_list="${kld_list} i915kms.ko"
+
+########## LOCALE / INPUT ##########
+# Keyboard layout
+keymap="german.iso.acc.kbd"
+
+########## SERVICES ##########
+# SSH remote access
 sshd_enable="YES"
+
+# Packet Filter firewall
+pf_enable="YES"
+
+########## NETWORK ##########
+# Ethernet (em0)
+ifconfig_em0="DHCP"
+# ifconfig_em0="inet 192.168.212.10 netmask 255.255.255.0"
+
+# Wi-Fi (Intel iwlwifi)
+wlans_iwlwifi0="wlan0"
+ifconfig_wlan0="WPA SYNCDHCP"
+
+# Alternative Wi-Fi (iwm0) — disabled
+# wlans_iwm0="wlan0"
+# ifconfig_wlan0="WPA SYNCDHCP"
+
 EOF
 
 # =============================
 # Configure sysctl
 # =============================
 cat <<EOF >> ${MOUNT}/etc/sysctl.conf
+########## CORE DUMP CONTROL ##########
 kern.coredump=0
 kern.corefile=/dev/null
+
+########## NETWORK TUNING ##########
 net.inet.tcp.delayed_ack=0
-# some fine tuning has to be done to get suspend/resume working properly:
+
+# Local UNIX socket buffer tuning (desktop / KDE / D-Bus performance)
+net.local.stream.recvspace=65536
+net.local.stream.sendspace=65536
+
+########## USER FILESYSTEMS ##########
+# Allow regular users to mount filesystems
+vfs.usermount=1
+
+########## OPTIMIZED ACPI (NO SUSPEND, HIBERNATE VIA DEVD) ##########
+# Do not reset GPU during ACPI events
 hw.acpi.reset_video=0
-hw.acpi.lid_switch_state=S3
-hw.acpi.sleep_button_state=S3
+
+# Power button → Shutdown
 hw.acpi.power_button_state=S5
-hw.acpi.sleep_delay=3
+
+# Lid action handled by devd (shutdown)
+hw.acpi.lid_switch_state=NONE
+
+# Disable sleep button
+hw.acpi.sleep_button_state=NONE
+
+# ACPI event delay (set to 0 for instant action)
+hw.acpi.sleep_delay=0
+
+# Helpful for debugging ACPI issues
 hw.acpi.verbose=1
-hw.syscons.sc_no_suspend_vtswitch=0
+
+########## CONSOLE BEHAVIOR ##########
+hw.syscons.sc_no_suspend_vtswitch=1
+
+########## THINKPAD EXTRAS ##########
+# Enable brightness, volume, Fn keys
 dev.acpi_ibm.0.events=1
 EOF
 
+# =============================
+# Lid closed → Immediate shutdown
+# =============================
+
+cat <<EOF >> ${MOUNT}/usr/local/etc/devd/lid_shutdown.conf
+notify 10 {
+    match "system" "ACPI";
+    match "subsystem" "Lid";
+    match "notify" "0";
+    action "/sbin/shutdown -p now";
+};
+EOF
+
+# =============================
+# Critical battery → Hibernate (S4)
+# =============================
+
+cat <<EOF >> ${MOUNT}/usr/local/etc/devd/battery_low.conf
+notify 10 {
+    match "system" "ACPI";
+    match "subsystem" "CMBAT";
+    match "notify" "0x80";
+    action "/sbin/acpiconf -s 4";
+};
+EOF
 # =============================
 # Finish Installation
 # =============================
