@@ -1,0 +1,24 @@
+timezone: Europe/Berlin
+
+install_gui: false
+
+firewall_services:
+  - ssh
+  - http
+  - https
+  - cockpit
+
+monitoring_packages:
+  - htop
+  - iotop
+  - iftop
+  - lshw
+
+admin_packages:
+  - vim
+  - nano
+  - wget
+  - curl
+  - unzip
+  - git
+  - bash-completion

@@ -1,0 +1,27 @@
+- name: Install repositories for RedHat
+  dnf:
+    name: epel-release
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name: Enable CRB repository
+  ansible.builtin.command: dnf config-manager --set-enabled crb
+  args:
+    creates: /etc/yum.repos.d/epel.repo
+  when: ansible_os_family == "RedHat"
+
+- name: Disable Unwanted or Testing Repos
+  ansible.builtin.command: dnf config-manager --set-disabled remi-modular epel-testing rpmfusion-*
+  when: ansible_os_family == "RedHat"
+
+- name: Backup current sources.list
+  ansible.builtin.copy:
+    src: /etc/apt/sources.list
+    dest: /etc/apt/sources.list.bak
+    remote_src: yes
+  when: ansible_os_family == "Debian"
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  when: ansible_os_family == "Debian"

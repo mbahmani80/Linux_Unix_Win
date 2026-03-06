@@ -1,0 +1,4 @@
+- name: Install monitoring tools
+  package:
+    name: "{{ monitoring_packages }}"
+    state: present

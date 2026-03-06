@@ -1,0 +1,14 @@
+ANSIBLE_CONFIG=ansible.cfg ansible all -i inventories/production/hosts.yml -m ping -u sysadmin
+ANSIBLE_CONFIG=ansible.cfg ansible-playbook -i inventories/production/hosts.yml playbooks/redhat-rocky_init.yml -u sysadmin --ask-become-pass
+ANSIBLE_CONFIG=ansible.cfg ansible-playbook -i inventories/production/hosts.yml playbooks/debian-ubuntu_init.yml -u sysadmin --ask-become-pass
+
+# Specify the Become User
+ansible-playbook -i inventories/production/hosts.yml \
+playbooks/redhat-rocky_init.yml \
+-u sysadmin \
+--become \
+--become-user root
+
+# Ask for Sudo Password
+ansible-playbook playbook.yml -u sysadmin --become -K
+

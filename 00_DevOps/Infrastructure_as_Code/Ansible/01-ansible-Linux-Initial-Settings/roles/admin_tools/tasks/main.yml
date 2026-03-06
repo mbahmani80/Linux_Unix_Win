@@ -1,0 +1,4 @@
+- name: Install admin packages
+  package:
+    name: "{{ admin_packages }}"
+    state: present

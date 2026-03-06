@@ -1,0 +1,20 @@
+---
+- name: Enterprise Linux Initial Configuration
+  hosts: rocky_servers
+  become: true
+
+  roles:
+    - repositories
+    - base_packages
+    - hostname
+    - timezone
+    - ssh
+    - firewalld
+    - selinux
+    - networkmanager
+    - monitoring_tools
+    - admin_tools
+    - cockpit
+    - snap
+    - vm_guest_tools
+    - { role: gui_workstation, when: install_gui }
