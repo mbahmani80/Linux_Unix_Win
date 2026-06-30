@@ -36,6 +36,16 @@ Offline=yes
 # =============================
 # Warning and confirmation
 # =============================
+# BOOT ENVIRONMENT READY
+echo "zroot"
+echo "├── ROOT"
+echo "│   └── default -> /"
+echo "├── tmp"
+echo "├── usr"
+echo "│   ├── home"
+echo "│   ├── ports"
+echo "│   └── src"
+echo "└── var"
 echo "=============================================================="
 echo "WARNING: This script will DESTROY ALL DATA on the specified partition ${PARTITION}!"
 echo "Do NOT run this on the wrong partition."
@@ -101,32 +111,55 @@ gpart add -t freebsd-zfs -l ${ZLABEL} ${DISK}
 gpart show -p
 
 # =============================
-# Create ZFS pool
+# Create ZFS pool (IMPORTANT: BE layout)
 # =============================
-zpool create -o altroot=${MOUNT} -o cachefile=${TMPFS}/zpool.cache -f ${ZNAME} /dev/gpt/${ZLABEL}
-zpool set bootfs=${ZNAME} ${ZNAME}
-zfs set checksum=fletcher4 ${ZNAME}
-zfs set mountpoint=/ ${ZNAME}
+#Create ZFS pool with BE layout:
+# Disk to install FreeBSD on (e.g., /dev/nda1)
+DISK=/dev/nda1
+# ZFS pool name
+ZNAME=zroot
+# Partition label for ZFS root
+ZLABEL=disk0
+# Temporary mount point for installation
+MOUNT=/tmp/mnt
+# Temporary tmpfs for caching
+TMPFS=/tmp/tmpfs
+
+zpool create \
+    -o altroot=${MOUNT} \
+    -o cachefile=${TMPFS}/zpool.cache \
+    -O compression=lz4 \
+    -O atime=off \
+    -O aclmode=passthrough \
+    -O aclinherit=passthrough \
+    -f ${ZNAME} /dev/gpt/${ZLABEL} 
 
 # =============================
-# Create ZFS datasets
+# Enable Boot Environments
+# =============================
+# Root dataset for BE system
+zfs create -o mountpoint=none ${ZNAME}/ROOT
+
+# Default boot environment
+zfs create -o mountpoint=/ ${ZNAME}/ROOT/default
+
+# Set bootfs for BE support
+zpool set bootfs=${ZNAME}/ROOT/default ${ZNAME}
+# =============================
+# Create ZFS datasets BE layout
 # =============================
 zfs create ${ZNAME}/usr
 zfs create ${ZNAME}/usr/home
 zfs create ${ZNAME}/var
-zfs create -o compression=${COMPRESSION} -o exec=on -o setuid=off ${ZNAME}/tmp
-zfs create -o compression=${COMPRESSION} -o setuid=off ${ZNAME}/usr/ports
+zfs create -o compression=lz4 -o exec=on -o setuid=off -o mountpoint=/tmp ${ZNAME}/tmp
+zfs create -o compression=lz4 -o setuid=off ${ZNAME}/usr/ports
 zfs create -o compression=off -o exec=off -o setuid=off ${ZNAME}/usr/ports/distfiles
 zfs create -o compression=off -o exec=off -o setuid=off ${ZNAME}/usr/ports/packages
-zfs create -o compression=${COMPRESSION} -o exec=off -o setuid=off ${ZNAME}/usr/src
-zfs create -o compression=${COMPRESSION} -o exec=off -o setuid=off ${ZNAME}/var/crash
+zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/usr/src
+zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/var/log
 zfs create -o exec=off -o setuid=off ${ZNAME}/var/db
-zfs create -o compression=${COMPRESSION} -o exec=on -o setuid=off ${ZNAME}/var/db/pkg
-zfs create -o exec=off -o setuid=off ${ZNAME}/var/empty
-zfs create -o compression=${COMPRESSION} -o exec=off -o setuid=off ${ZNAME}/var/log
-zfs create -o compression=${COMPRESSION} -o exec=off -o setuid=off ${ZNAME}/var/mail
 zfs create -o exec=off -o setuid=off ${ZNAME}/var/run
-zfs create -o compression=${COMPRESSION} -o exec=on -o setuid=off ${ZNAME}/var/tmp
+zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/var/crash
 
 # =============================
 # Create ZFS swap
@@ -134,6 +167,7 @@ zfs create -o compression=${COMPRESSION} -o exec=on -o setuid=off ${ZNAME}/var/t
 zfs create -V 4G ${ZNAME}/swap
 zfs set org.freebsd:swap=on ${ZNAME}/swap
 zfs set checksum=off ${ZNAME}/swap
+zfs set sync=always ${ZNAME}/swap
 
 # =============================
 # Set permissions and home symlink
@@ -206,8 +240,8 @@ loader_logo="beastie"
 # FILESYSTEM: ZFS ROOT
 # ----------------------------------------
 zfs_load="YES"
-#vfs.root.mountfrom="zfs:zroot"
-vfs.root.mountfrom="zfs:${ZNAME}"
+#vfs.root.mountfrom="zfs:${ZNAME}/ROOT/default"
+vfs.root.mountfrom="zfs:zroot/ROOT/default"
 
 # ----------------------------------------
 # CPU / POWER MANAGEMENT
@@ -344,13 +378,9 @@ pf_enable="YES"
 ifconfig_em0="DHCP"
 # ifconfig_em0="inet 192.168.212.10 netmask 255.255.255.0"
 
-# Wi-Fi (Intel iwlwifi)
-wlans_iwlwifi0="wlan0"
+# Wi-Fi (Intel iwm0 Intel AC 9560)
+wlans_iwm0="wlan0"
 ifconfig_wlan0="WPA SYNCDHCP"
-
-# Alternative Wi-Fi (iwm0) — disabled
-# wlans_iwm0="wlan0"
-# ifconfig_wlan0="WPA SYNCDHCP"
 
 EOF
 
@@ -403,8 +433,7 @@ EOF
 # =============================
 # Lid closed → Immediate shutdown
 # =============================
-
-cat <<EOF >> ${MOUNT}/usr/local/etc/devd/lid_shutdown.conf
+cat <<EOF >> ${MOUNT}/etc/devd/lid_shutdown.conf
 notify 10 {
     match "system" "ACPI";
     match "subsystem" "Lid";
@@ -417,7 +446,7 @@ EOF
 # Critical battery → Hibernate (S4)
 # =============================
 
-cat <<EOF >> ${MOUNT}/usr/local/etc/devd/battery_low.conf
+cat <<EOF >> ${MOUNT}/etc/devd/battery_low.conf
 notify 10 {
     match "system" "ACPI";
     match "subsystem" "CMBAT";
