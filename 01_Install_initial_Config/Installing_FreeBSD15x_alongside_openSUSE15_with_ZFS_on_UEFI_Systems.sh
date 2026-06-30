@@ -165,7 +165,7 @@ zfs create -o mountpoint=/var/run ${ZNAME}/var/run
 zfs create -o compression=lz4 -o exec=off -o setuid=off -o mountpoint=/var/crash ${ZNAME}/var/crash
 
 # TMP 
-zfs create -o compression=lz4 -o exec=on -o setuid=off -o mountpoint=/tmp -o exec=on -o setuid=off ${ZNAME}/tmp
+zfs create -o compression=lz4 -o exec=on -o setuid=off -o mountpoint=/tmp ${ZNAME}/tmp
 # =============================
 # Create ZFS swap
 # =============================
