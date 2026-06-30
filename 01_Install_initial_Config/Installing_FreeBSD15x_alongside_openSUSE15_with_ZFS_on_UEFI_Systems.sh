@@ -148,19 +148,24 @@ zpool set bootfs=${ZNAME}/ROOT/default ${ZNAME}
 # =============================
 # Create ZFS datasets BE layout
 # =============================
-zfs create ${ZNAME}/usr
-zfs create ${ZNAME}/usr/home
-zfs create ${ZNAME}/var
-zfs create -o compression=lz4 -o exec=on -o setuid=off -o mountpoint=/tmp ${ZNAME}/tmp
-zfs create -o compression=lz4 -o setuid=off ${ZNAME}/usr/ports
-zfs create -o compression=off -o exec=off -o setuid=off ${ZNAME}/usr/ports/distfiles
-zfs create -o compression=off -o exec=off -o setuid=off ${ZNAME}/usr/ports/packages
-zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/usr/src
-zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/var/log
-zfs create -o exec=off -o setuid=off ${ZNAME}/var/db
-zfs create -o exec=off -o setuid=off ${ZNAME}/var/run
-zfs create -o compression=lz4 -o exec=off -o setuid=off ${ZNAME}/var/crash
+# USER STRUCTURE (FIXED MOUNTPOINTS)
+zfs create -o mountpoint=/usr ${ZNAME}/usr
 
+zfs create -o mountpoint=/usr/home ${ZNAME}/usr/home
+zfs create -o mountpoint=/usr/ports ${ZNAME}/usr/ports
+zfs create -o compression=off -o exec=off -o setuid=off -o mountpoint=/usr/ports/distfiles ${ZNAME}/usr/ports/distfiles
+zfs create -o compression=off -o exec=off -o setuid=off -o mountpoint=/usr/ports/packages ${ZNAME}/usr/ports/packages
+zfs create -o mountpoint=/usr/src ${ZNAME}/usr/src
+
+# VAR STRUCTURE
+zfs create -o mountpoint=/var ${ZNAME}/var
+zfs create -o mountpoint=/var/log ${ZNAME}/var/log
+zfs create -o mountpoint=/var/db ${ZNAME}/var/db
+zfs create -o mountpoint=/var/run ${ZNAME}/var/run
+zfs create -o compression=lz4 -o exec=off -o setuid=off -o mountpoint=/var/crash ${ZNAME}/var/crash
+
+# TMP 
+zfs create -o compression=lz4 -o exec=on -o setuid=off -o mountpoint=/tmp -o exec=on -o setuid=off ${ZNAME}/tmp
 # =============================
 # Create ZFS swap
 # =============================
@@ -168,14 +173,6 @@ zfs create -V 4G ${ZNAME}/swap
 zfs set org.freebsd:swap=on ${ZNAME}/swap
 zfs set checksum=off ${ZNAME}/swap
 zfs set sync=always ${ZNAME}/swap
-
-# =============================
-# Set permissions and home symlink
-# =============================
-chmod 1777 ${MOUNT}/tmp
-cd ${MOUNT}
-ln -s usr/home home
-chmod 1777 ${MOUNT}/var/tmp
 
 # =============================
 # Install base system
@@ -323,44 +320,6 @@ economy_cpu_freq="NONE"
 # Network time synchronization
 ntpd_enable="YES"
 ntpd_sync_on_start="YES"
-
-########## DESKTOP / GUI ##########
-# Display manager (KDE/Plasma)
-sddm_enable="YES"
-
-# User filesystem helpers
-fusefs_enable="YES"
-automount_enable="YES"
-automountd_enable="YES"
-autounmountd_enable="YES"
-dsbmd_enable="YES"
-
-########## AUDIO / IPC ##########
-# Desktop communication bus (required by most GUI apps)
-# Enables the system message bus so desktop applications can communicate and function correctly.
-dbus_enable="YES"
-
-# Hardware event manager (automatic driver/hotplug detection)
-# Enables automatic hardware detection, driver loading, and device event handling.
-devd_enable="YES"
-
-# PipeWire audio server
-pipewire_enable="YES"
-wireplumber_enable="YES"
-
-########## NVIDIA / GPU ##########
-# Enable Linux binary compatibility (needed for NVIDIA CUDA)
-linux_enable="YES"
-
-# Load NVIDIA driver modules
-nvidia_load="YES"
-kld_list="${kld_list} nvidia-modeset"
-
-# Enable headless NVIDIA Xorg (DISPLAY :8)
-nvidia_xorg_enable="YES"
-
-# Intel GPU kernel module (for fallback or hybrid graphics)
-kld_list="${kld_list} i915kms.ko"
 
 ########## LOCALE / INPUT ##########
 # Keyboard layout
